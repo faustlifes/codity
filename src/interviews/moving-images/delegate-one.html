@@ -1,0 +1,153 @@
+<!-- task1:
+    Look at the code:
+
+    delegateOnce('new-button', 'click', () => {
+    console.log('button clicked');
+    });
+
+    runAtRandomTime(init);
+
+    function init() {
+    const parentDiv = document.createElement('div');
+    parentDiv.id = 'parent-div';
+
+    const btn = document.createElement('button');
+    btn.id = 'new-button';
+    btn.innerHTML = 'Click me';
+
+    parentDiv.appendChild(btn);
+    document.body.appendChild(parentDiv);
+
+    parentDiv.addEventListener('click', e => {
+    console.log('parent-div clicked');
+    });
+    }
+
+    You will have to implement the "delegateOnce" function. It receives three parameters:
+    - element id,
+    - event type,
+    - event handler function
+
+    This function should add an event listener to the element with specified id. The event handler should be invoked only once.
+    A function "runAtRandomTime" will run a function passed to it as an argument in a random moment (for example - tomorrow).
+    Manipulating only the code of "delegateOnce" implementation -
+    make the click event handler attached to the element with id "parent-div" (find it in the "init" function) NOT trigger.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  'use strict';
+  /* task1 :
+  *    create delegateOnce listener that stated once per component
+  * */
+  const parentDiv = document.createElement('div');
+  parentDiv.id = 'parent-div';
+
+  const btn = document.createElement('button');
+  btn.id = 'new-button';
+  btn.innerHTML = 'Click me';
+
+  parentDiv.appendChild(btn);
+  document.body.appendChild(parentDiv);
+
+  parentDiv.addEventListener('click', e => {
+    console.log('parent-div clicked');
+  });
+  delegateOnce('new-button', 'click', () => {
+    console.log('button clicked');
+  });
+  delegateOnce('new-button', 'click', () => {
+    console.log('button clicked');
+  });
+
+  function delegateOnce (id, eventType, handler) {
+    const butt = document.getElementById(id);
+
+    butt.listenerList = butt.listenerList || {};
+    const event = butt.listenerList[ eventType ];
+    if (event) {
+      butt.removeEventListener(eventType, butt.listenerList[ eventType ]);
+    }
+    butt.addEventListener(eventType, handler);
+    butt.listenerList[ eventType ] = handler;
+  }
+
+  /* task2:
+   *    create own fetch with Promise structure
+   */
+  function fetch1 (method = 'GET', url) {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(xhr.responseText);
+          } else {
+            reject(xhr.status, xhr.statusText, xhr.responseText);
+          }
+        }
+      };
+      xhr.open(method, url);
+      xhr.send();
+    });
+  }
+
+  /* task3 :
+   * create function getDeepestNestingLevel that find max ('ol, ul')
+  */
+  $(function () { // call func after doc ready
+    function getDeepestNestingLevel () {
+      /*select all elems with selector ol/ul*/
+      const data = $('ol, ul');
+      /* init array where we will save count nested + 1 for self*/
+      const nestedCnt = [];
+      data.each((i, l) => {
+        /* push count nested elems + 1 for self*/
+        nestedCnt.push($(l).find('ol, ul').length + 1);
+      });
+      /* here we should select max from array we can use apply
+         with null context(it require array as we need)*/
+      return Math.max.apply(null, nestedCnt);
+    }
+
+    $("#result").append(getDeepestNestingLevel());
+  });
+</script>
+
+<div id="result">Result =</div>
+
+<ul>
+    <li>Here nesting level is one</li>
+</ul>
+<ol>
+    <li>
+        <ol>
+            <li>
+                <ul>
+                    <li>
+                        Here nesting level is three
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </li>
+</ol>
+<ul>
+    <li>
+        <ul>
+            <li>
+                Here it is two
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
