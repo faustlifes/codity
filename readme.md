@@ -1,6 +1,6 @@
-#=== CODITY ===
-####There is the private collection of different task that I got in different interviews solved in the leetcode or codility end etc. resources
-###How to use this resource:
+# === CODITY ===
+#### There is the private collection of different task that I got in different interviews solved in the leetcode or codility end etc. resources
+### How to use this resource:
 1. run ``npm install`` to intall all needed dependencies
 2. run ``npm start`` to run app
 3. here you will see the ```'Please enter No of lesson (e.g. 1):'``` here you should write the some group task(class) name like file/class ``cl1`` name etc. then ``.`` and then solution number ``1`` like 
