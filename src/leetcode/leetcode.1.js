@@ -98,7 +98,7 @@ class Leetcode1 extends SingletonTemplate {
     return res;
   }
 
-  /*Subrectangle Queries */
+  /*1476. Subrectangle Queries */
   solution3(rectangle = [[1, 2, 1], [4, 3, 4], [3, 2, 1], [1, 1, 1]]) {
     /**
      * @param {number[][]} rect
@@ -140,10 +140,10 @@ class Leetcode1 extends SingletonTemplate {
      */
     const queries = new SubrectangleQueries(rectangle);
     console.log(queries.getValue(0, 2));
-    console.log(queries.updateSubrectangle(0, 0, 3, 2, 5));
+    queries.updateSubrectangle(0, 0, 3, 2, 5);
     console.log(queries.getValue(0, 2));
     console.log(queries.getValue(3, 1));
-    console.log(queries.updateSubrectangle(3, 0, 3, 2, 10));
+    queries.updateSubrectangle(3, 0, 3, 2, 10);
     console.log(queries.getValue(3, 1));
     console.log(queries.getValue(0, 2));
     return null;
