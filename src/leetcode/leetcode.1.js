@@ -1,21 +1,7 @@
 import {SingletonTemplate} from '../common/singleton.template';
+import { ListNode, LinkedList } from '../common/list-node';
 
 let instance;
-
-class LinkedList {
-  constructor(val) {
-    this.head = {
-      val,
-      next: null
-    };
-    this.length = 1;
-  }
-}
-
-function ListNode(val, next) {
-  this.val = (val === undefined ? 0 : val)
-  this.next = (next === undefined ? null : next)
-}
 
 class Leetcode1 extends SingletonTemplate {
   static getInstance() {
@@ -35,7 +21,7 @@ class Leetcode1 extends SingletonTemplate {
    * @return {ListNode}
    * addTwoNumbers
    */
-  solution1(l1 = [2, 4, 3], l2 = [5, 6, 4]) {
+  solution1(l1 = ListNode.ArrToLN([2, 4, 3]), l2 = ListNode.ArrToLN([5, 6, 4])) {
     var list = new LinkedList(0);
     var head = list;
     var sum = 0;

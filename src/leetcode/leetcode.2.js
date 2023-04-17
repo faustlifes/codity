@@ -1,4 +1,5 @@
 import {SingletonTemplate} from '../common/singleton.template';
+import {ListNode} from '../common/list-node';
 
 let instance;
 
@@ -66,6 +67,20 @@ class Leetcode2 extends SingletonTemplate {
       counter++
     }
     return counter - 1;
+  }
+
+  /**
+   * 83. Remove Duplicates from Sorted List
+   * Easy
+   * 7.1K
+   * 243
+   * Companies
+   * Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+   *
+   * */
+  solution3(head) {
+    ListNode.ArrToLN();
+
   }
 }
 
