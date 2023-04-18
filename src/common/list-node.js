@@ -8,11 +8,6 @@ export class LinkedList {
   }
 }
 
-/*export function ListNode(val, next) {
-  this.val = (val === undefined ? 0 : val)
-  this.next = (next === undefined ? null : next)
-}*/
-
 
 export class ListNode {
   constructor(val, next) {

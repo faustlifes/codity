@@ -22,10 +22,10 @@ class Leetcode1 extends SingletonTemplate {
    * addTwoNumbers
    */
   solution1(l1 = ListNode.ArrToLN([2, 4, 3]), l2 = ListNode.ArrToLN([5, 6, 4])) {
-    var list = new LinkedList(0);
-    var head = list;
-    var sum = 0;
-    var carry = 0;
+    const list = new LinkedList(0);
+    let head = list;
+    let sum = 0;
+    let carry = 0;
 
     while (l1 || l2 || sum > 0) {
 
@@ -89,7 +89,7 @@ class Leetcode1 extends SingletonTemplate {
     /**
      * @param {number[][]} rect
      */
-    var SubrectangleQueries = function (rect) {
+    const SubrectangleQueries = function (rect) {
       this.rectangle = rect;
     };
 
@@ -372,12 +372,10 @@ class Leetcode1 extends SingletonTemplate {
    * }
    */
   /**
-   * @param {ListNode} list1
-   * @param {ListNode} list2
    * @return {ListNode}
    */
-  solution11(list1, list2) {
-    list1 = {
+  solution11() {
+    const list1 = {
       val: 1,
       next: {
         val: 2,
@@ -387,7 +385,7 @@ class Leetcode1 extends SingletonTemplate {
         }
       }
     }
-    list2 = {
+    const list2 = {
       val: 1,
       next: {
         val: 3,

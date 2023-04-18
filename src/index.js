@@ -29,7 +29,6 @@ function parseInput (input) {
 
 function resolveLessonByNo (lesson) {
   let result = `You enter wrong lesson No or it's not completed yet`;
-  // let data = [];
   const pi = parseInput(lesson);
   const cl = classResolver[pi.lNumber]
   const func = cl ? [`solution${pi.sNumber}`] : null;
