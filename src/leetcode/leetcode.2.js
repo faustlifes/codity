@@ -1,5 +1,6 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import {ListNode} from '../common/list-node';
+import {TreeNode} from '../common/tree';
 
 let instance;
 
@@ -80,6 +81,14 @@ class Leetcode2 extends SingletonTemplate {
    * */
   solution3(head) {
     ListNode.ArrToLN();
+
+  }
+
+  /** 124. Binary Tree Maximum Path Sum
+   *  * @param {TreeNode} root
+   *  * @return {number}
+   * */
+  solution4(root= TreeNode.ArrToTN([1,2,3,4,5,6,7])) {
 
   }
 }
