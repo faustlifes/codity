@@ -88,8 +88,20 @@ class Leetcode2 extends SingletonTemplate {
    *  * @param {TreeNode} root
    *  * @return {number}
    * */
-  solution4(root= TreeNode.ArrToTN([1,2,3,4,5,6,7])) {
-
+  solution4(root= TreeNode.ArrToTN([2,-1,-2])) {
+    let answer = Number.NEGATIVE_INFINITY;
+    function helper(node) {
+      if (!node) {
+        return 0;
+      }
+      const leftMax = helper(node.left);
+      const rightMax = helper(node.right);
+      let temp = node.val + leftMax + rightMax;
+      answer = Math.max(temp, answer, node.val + leftMax ,node.val, node.val + rightMax);
+      return  Math.max(node.val, node.val + leftMax, node.val + rightMax);
+    }
+    helper(root);
+    return answer;
   }
 }
 
