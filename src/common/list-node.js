@@ -28,6 +28,23 @@ export class ListNode {
     }
     return head;
   }
+  deleteNode(key) {
+    let [head, temp, prev] = [this, this, undefined];
+    if (!!temp && temp.val === key) {
+      head = temp.next;
+      return head;
+    }
+    while (!!temp && temp.val !== key) {
+      prev = temp;
+      temp = temp.next;
+    }
+    if (!temp) {
+      return head;
+    }
+
+    prev.next = temp.next;
+    return head;
+  }
 }
 
 

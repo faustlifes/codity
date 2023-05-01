@@ -79,17 +79,31 @@ class Leetcode2 extends SingletonTemplate {
    * Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
    *
    * */
-  solution3(head) {
-    ListNode.ArrToLN();
-
+  /**
+   * @param {ListNode} head
+   * @return {ListNode}
+   */
+  solution3(head = ListNode.ArrToLN([1, 1, 1, 2, 2])) {
+    let curr = head;
+    if (head) {
+      while (!!curr && !!curr.next) {
+        if (curr.val === curr.next.val) {
+          curr.next = curr.next.next;
+        } else {
+          curr = curr.next;
+        }
+      }
+    }
+    return head;
   }
 
   /** 124. Binary Tree Maximum Path Sum
    *  * @param {TreeNode} root
    *  * @return {number}
    * */
-  solution4(root= TreeNode.ArrToTN([2,-1,-2])) {
+  solution4(root = TreeNode.ArrToTN([2, -1, -2])) {
     let answer = Number.NEGATIVE_INFINITY;
+
     function helper(node) {
       if (!node) {
         return 0;
@@ -97,9 +111,10 @@ class Leetcode2 extends SingletonTemplate {
       const leftMax = helper(node.left);
       const rightMax = helper(node.right);
       let temp = node.val + leftMax + rightMax;
-      answer = Math.max(temp, answer, node.val + leftMax ,node.val, node.val + rightMax);
-      return  Math.max(node.val, node.val + leftMax, node.val + rightMax);
+      answer = Math.max(temp, answer, node.val + leftMax, node.val, node.val + rightMax);
+      return Math.max(node.val, node.val + leftMax, node.val + rightMax);
     }
+
     helper(root);
     return answer;
   }
