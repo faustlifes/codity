@@ -1,5 +1,6 @@
 import readline from 'readline';
 import { classResolver } from './common/class-resolver';
+import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -35,14 +36,18 @@ function parseInput (input) {
 function resolveLessonByNo (lesson) {
   let result = noTaskErr;
   const pi = parseInput(lesson);
-  const cl = classResolver[pi.lNumber]
-  const func = cl ? [`solution${pi.sNumber}`] : null;
-  if (!func) {
-    return result;
+  let ls;
+  for (let prop in classResolver) {
+    ls = undefined;
+    if (prop.includes(pi.lNumber)) {
+      ls = classResolver[prop][`solution${pi.sNumber}`];
+      if (ls) {
+        break;
+      }
+    }
   }
-  result = launchLesson(lesson, classResolver[pi.lNumber][`solution${pi.sNumber}`],[]);
-
-  return result;
+  return launchLesson(lesson, ls,[]);
 }
+
 
 

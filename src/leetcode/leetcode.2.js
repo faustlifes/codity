@@ -1,7 +1,6 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import {ListNode} from '../common/list-node';
 import {TreeNode} from '../common/tree';
-import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
 let instance;
 
