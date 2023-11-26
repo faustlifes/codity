@@ -1,6 +1,5 @@
 import readline from 'readline';
 import { classResolver } from './common/class-resolver';
-import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -34,7 +33,6 @@ function parseInput (input) {
 
 
 function resolveLessonByNo (lesson) {
-  let result = noTaskErr;
   const pi = parseInput(lesson);
   let ls;
   for (let prop in classResolver) {
