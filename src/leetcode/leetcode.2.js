@@ -1,6 +1,7 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import {ListNode} from '../common/list-node';
 import {TreeNode} from '../common/tree';
+import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
 let instance;
 
@@ -34,7 +35,7 @@ class Leetcode2 extends SingletonTemplate {
    *  * @param {string} needle
    *  * @return {number}
    * */
-  solution1(haystack = 'leetcode', needle = 'leet') {
+  solution28(haystack = 'leetcode', needle = 'leet') {
     return haystack.indexOf(needle);
   }
 
@@ -55,7 +56,7 @@ class Leetcode2 extends SingletonTemplate {
    * Constraints:
    *   0 <= x <= 231 - 1
    * */
-  solution2(x = 2147395600) {
+  solution69(x = 2147395600) {
 
     if (x === 0 || x === 1) {
       return x;
@@ -83,7 +84,7 @@ class Leetcode2 extends SingletonTemplate {
    * @param {ListNode} head
    * @return {ListNode}
    */
-  solution3(head = ListNode.ArrToLN([1, 1, 1, 2, 2])) {
+  solution83(head = ListNode.ArrToLN([1, 1, 1, 2, 2])) {
     let curr = head;
     if (head) {
       while (!!curr && !!curr.next) {
@@ -101,7 +102,7 @@ class Leetcode2 extends SingletonTemplate {
    *  * @param {TreeNode} root
    *  * @return {number}
    * */
-  solution4(root = TreeNode.ArrToTN([2, -1, -2])) {
+  solution124(root = TreeNode.ArrToTN([2, -1, -2])) {
     let answer = Number.NEGATIVE_INFINITY;
 
     function helper(node) {
@@ -117,6 +118,29 @@ class Leetcode2 extends SingletonTemplate {
 
     helper(root);
     return answer;
+  }
+
+  /**
+   * 62. Unique Paths
+   * There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0]). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only move either down or right at any point in time.
+   * Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.
+   * The test cases are generated so that the answer will be less than or equal to 2 * 109.
+   *
+   * @param {number} m
+   * @param {number} n
+   * @return {number}
+   */
+  solution62(m = 3, n= 2) {
+    const uniquePaths = function(m, n, memo = {}) {
+      const key = m + ',' + n;
+      if (key in memo) return memo[key];
+      if (m === 1 || n === 1) return 1
+      if (m === 0 || n === 0) return 0;
+
+      memo[key] = uniquePaths(m-1, n, memo) + uniquePaths(m, n-1, memo);
+      return memo[key];
+    };
+    return uniquePaths(m,n);
   }
 }
 

@@ -9,6 +9,25 @@ class Leetcode1 extends SingletonTemplate {
   }
 
   /**
+   * 1672. Richest Customer Wealth
+   * Easy
+   * 4.1K
+   * 352
+   * Companies
+   * You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the i-th customer has in the j-th bank. Return the wealth that the richest customer has.
+   * A customer's wealth is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum wealth.
+   * @param {number[][]} accounts
+   * @return {number}
+   */
+  solution1672(accounts= [[1,2,3],[3,2,1]]) {
+    const sumList = [];
+    for (let account of accounts) {
+      sumList.push(account.reduce((acc, curr) => acc + curr));
+    }
+    return Math.max(...sumList)
+  };
+
+  /**
    * Definition for singly-linked list.
    * function ListNode(val, next) {
    *     this.val = (val===undefined ? 0 : val)
@@ -19,9 +38,18 @@ class Leetcode1 extends SingletonTemplate {
    * @param {ListNode} l1
    * @param {ListNode} l2
    * @return {ListNode}
-   * addTwoNumbers
+   *
+   * 2. Add Two Numbers
+   * Medium
+   * 29.1K
+   * 5.6K
+   * Companies
+   * You are given two non-empty linked lists representing two non-negative integers.
+   * The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+   *
+   * You may assume the two numbers do not contain any leading zero, except the number 0 itself.
    */
-  solution1(l1 = ListNode.ArrToLN([2, 4, 3]), l2 = ListNode.ArrToLN([5, 6, 4])) {
+  solution2(l1 = ListNode.ArrToLN([2, 4, 3]), l2 = ListNode.ArrToLN([5, 6, 4])) {
     const list = new LinkedList(0);
     let head = list;
     let sum = 0;
@@ -53,8 +81,10 @@ class Leetcode1 extends SingletonTemplate {
     return list.next;
   }
 
-  /*leetcode task sum3*/
-  solution2(nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]) {
+  /** leetcode
+   * task sum3
+   **/
+  solution1(nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]) {
     const res = [];
     nums.sort((a, b) => a - b);
     let i;
@@ -85,7 +115,7 @@ class Leetcode1 extends SingletonTemplate {
   }
 
   /*1476. Subrectangle Queries */
-  solution3(rectangle = [[1, 2, 1], [4, 3, 4], [3, 2, 1], [1, 1, 1]]) {
+  solution1476(rectangle = [[1, 2, 1], [4, 3, 4], [3, 2, 1], [1, 1, 1]]) {
     /**
      * @param {number[][]} rect
      */
@@ -136,10 +166,15 @@ class Leetcode1 extends SingletonTemplate {
   }
 
   /**
+   * 1282. Group the People Given the Group Size They Belong To
+   * There are n people that are split into some unknown number of groups. Each person is labeled with a unique ID from 0 to n - 1.
+   * You are given an integer array groupSizes, where groupSizes[i] is the size of the group that person i is in. For example, if groupSizes[1] = 3, then person 1 must be in a group of size 3.
+   * Return a list of groups such that each person i is in a group of size groupSizes[i].
+   * Each person should appear in exactly one group, and every person must be in a group. If there are multiple answers, return any of them. It is guaranteed that there will be at least one valid solution for the given input.
    * @param {number[]} groupSizes
    * @return {number[][]}
    */
-  solution4(groupSizes = [3, 3, 2, 3, 2, 3, 3, 1, 3]) {
+  solution1282(groupSizes = [3, 3, 2, 3, 2, 3, 3, 1, 3]) {
     const sMap = {};
     const res = [];
     const l = groupSizes.length;
@@ -167,7 +202,9 @@ class Leetcode1 extends SingletonTemplate {
     return wordList[0];
   }
 
-  /*Create Curry function which divide params like currySum(a)(b)(c)(d)*/
+  /**
+   * Create Curry function which divide params like currySum(a)(b)(c)(d)
+   **/
   solution6() {
     function sum(a, b, c, d) {
       return a + b + c + d;
@@ -196,7 +233,8 @@ class Leetcode1 extends SingletonTemplate {
     return ss(1)(2)(2)(2);
   }
 
-  /** Given an array of integers temperatures represents the daily temperatures,
+  /** 739. Daily Temperatures
+   * Given an array of integers temperatures represents the daily temperatures,
    * return an array answer such that answer[i] is the number of days you have
    * to wait after the ith day to get a warmer temperature. If there is no future
    * day for which this is possible, keep answer[i] == 0 instead.
@@ -214,7 +252,7 @@ class Leetcode1 extends SingletonTemplate {
    * @param {number[]} temperatures
    * @return {number[]}
    */
-  solution7(temperatures = [11, 14, 10, 11, 9, 16]) {
+  solution739(temperatures = [11, 14, 10, 11, 9, 16]) {
     const stack = [];
     const l = temperatures.length;
     const answer = Array(l).fill(0);
@@ -230,7 +268,7 @@ class Leetcode1 extends SingletonTemplate {
     return answer;
   }
 
-  /* 3. Longest Substring Without Repeating Characters
+  /** 3. Longest Substring Without Repeating Characters
    * Given a string s, find the length of the longest substring without repeating characters.
      Example 1:
        Input: s = "abcabcbb", Output: 3
@@ -245,8 +283,8 @@ class Leetcode1 extends SingletonTemplate {
      Example 4:
        Input: s = "", Output: 0
      Constraints: 0 <= s.length <= 5 * 104, s consists of English letters, digits, symbols and spaces.
-  * */
-  solution8(s = 'pwwkew') {
+  **/
+  solution3(s = 'pwwkew') {
     const charSet = new Set();
     let max = 0;
     let l = 0;
@@ -263,6 +301,7 @@ class Leetcode1 extends SingletonTemplate {
   }
 
   /*
+  13. Roman to Integer
   Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
   Symbol       Value
@@ -300,7 +339,7 @@ class Leetcode1 extends SingletonTemplate {
   Output: 1994
   Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
   * */
-  solution9(s = 'MCMXCIV') {
+  solution13(s = 'MCMXCIV') {
     const symbols = {
       'I': 1,
       'V': 5,
@@ -324,8 +363,8 @@ class Leetcode1 extends SingletonTemplate {
     return res;
   }
 
-  /*
-    Write a function to find the longest common prefix string amongst an array of strings.
+  /** 14. Longest Common Prefix
+   Write a function to find the longest common prefix string amongst an array of strings.
     If there is no common prefix, return an empty string "".
       Example 1:
 
@@ -342,8 +381,8 @@ class Leetcode1 extends SingletonTemplate {
         1 <= strs.length <= 200
         0 <= strs[i].length <= 200
         strs[i] consists of only lowercase English letters.
-  * */
-  solution10(strs = ['flower', 'flow', 'flight', 'dddddd']) {
+   **/
+  solution14(strs = ['flower', 'flow', 'flight', 'dddddd']) {
     let prefix = strs[0];
     for (let i = 1; i < strs.length; i++) {
       while (strs[i].indexOf(prefix) !== 0) {
@@ -374,7 +413,7 @@ class Leetcode1 extends SingletonTemplate {
   /**
    * @return {ListNode}
    */
-  solution11() {
+  solution21() {
     const list1 = {
       val: 1,
       next: {
@@ -439,7 +478,7 @@ class Leetcode1 extends SingletonTemplate {
    * @param {number[]} nums
    * @return {number}
    */
-  solution12(nums= [0,0,1,2,2,4,4,5]) {
+  solution26(nums= [0,0,1,2,2,4,4,5]) {
 
     let addIndex = 1;
     for (let i = 0; i < nums.length; i++) {
@@ -452,7 +491,8 @@ class Leetcode1 extends SingletonTemplate {
   }
 
   /**
-   * 27. Given an integer array nums and an integer val, remove all occurrences of val in nums in-place.
+   * 27. Remove element
+   * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place.
    * The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
    * Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
    *   Change the array nums such that the first k elements of nums contain the elements which are not equal to val.
@@ -464,7 +504,7 @@ class Leetcode1 extends SingletonTemplate {
    * @return {number}
    *
   * */
-  solution13(nums = [3,2,2,3], val = 3) {
+  solution27(nums = [3,2,2,3], val = 3) {
     let count = 0;
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] === val) {
