@@ -12,8 +12,8 @@
    5. ```cl5``` - codility tasks 5 level
    6. ```cl6``` - codility tasks 6 level
    7. ```cl7``` - codility tasks 7 level
-   8. ```lt1``` - 1 file leetcode has 13 solutions now
-   8. ```lt2``` - 2 file leetcode is new a one now
+   8. ```lt1``` - 1 file leetcode has 14 solutions now (every number is a leetcode number)
+   8. ```lt2``` - 2 file leetcode is new a one now (every number is a leetcode number)
    9. ```quickSearch``` - quickSearch is task with 1 solution here
    10. ```divideImpera``` - divideImpera is example with 1 solution here
    11. ```maxWaterArea``` - is task about water area with 1 solution
