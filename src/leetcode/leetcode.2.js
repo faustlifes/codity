@@ -184,6 +184,43 @@ class Leetcode2 extends SingletonTemplate {
     return pos;
   }
 
+  /** 1160. Find Words That Can Be Formed by Characters
+   You are given an array of strings words and a string chars.
+   A string is good if it can be formed by characters from chars (each character can only be used once).
+   Return the sum of lengths of all good strings in words.
+   Example 1:
+    Input: words = ["cat","bt","hat","tree"], chars = "atach"
+    Output: 6
+    Explanation: The strings that can be formed are "cat" and "hat" so the answer is 3 + 3 = 6.
+   Example 2:
+    Input: words = ["hello","world","leetcode"], chars = "welldonehoneyr"
+    Output: 10
+    Explanation: The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 10.
+   * @param {string[]} words
+   * @param {string} chars
+   * @return {number}
+   * */
+  solution1160(words= ["cataha","bt","hat","tree"], chars = "atach") {
+    let result = 0;
+    for (let word of words) {
+      const wordList = word.split('');
+      let charList = chars.split('');
+
+      if (wordList.every((char) => {
+        let res = false;
+        const idx = charList.findIndex((el) => el === char);
+        if (idx > -1) {
+          charList.splice(idx,1);
+          res = true;
+        }
+        return res;
+      })) {
+        result += word.length;
+      }
+    }
+    return result;
+  }
+
 }
 
 export default Leetcode2.getInstance();
