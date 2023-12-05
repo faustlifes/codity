@@ -269,6 +269,57 @@ class Leetcode2 extends SingletonTemplate {
     return digits;
   }
 
+  /**67. Add Binary
+   Given two binary strings a and b, return their sum as a binary string.
+   Example 1:
+     Input: a = "11", b = "1"
+     Output: "100"
+   Example 2:
+     Input: a = "1010", b = "1011"
+     Output: "10101"
+   * @param {string} a
+   * @param {string} b
+   * @return {string}
+   *
+   *
+   * [1,1] + [1,1] = [0,1,1,0]
+   * */
+  solution67(a='1101',b='11111'){
+    const aL = a.split('');
+    const bL = b.split('');
+    const max = Math.max(aL.length, bL.length);
+
+    const resL = [];
+    let add = 0;
+
+    for (let i = 0; i < max; i++) {
+      if (aL.length < max) {
+        aL.unshift('0');
+      }
+      if (bL.length < max) {
+        bL.unshift('0');
+      }
+    }
+
+    for (let i = aL.length -1; i >= 0; i--) {
+      const res = +aL[i] + (+bL[i] || 0) + add;
+      if (res < 2 ) {
+        resL.unshift(res);
+        add = 0;
+      } else if (res === 2) {
+        resL.unshift(0);
+        add = 1;
+      } else {
+        resL.unshift(1);
+        add = 1;
+      }
+    }
+    if (add) {
+      resL.unshift(1);
+    }
+    return resL.join('');
+  }
+
 }
 
 export default Leetcode2.getInstance();
