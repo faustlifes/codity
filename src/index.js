@@ -20,10 +20,10 @@ function launchLesson (lessonNumber, funcLaunch, params) {
   if (!funcLaunch) {
     return noTaskErr;
   }
-  let res = `- lesson is: ${lessonNumber}\n`
-  res += `- params is: ${params}\n`
-  res += `- result is: ${funcLaunch(...params)}`;
-  return res;
+  return `  - lesson is: ${lessonNumber}
+  - params is: ${params}
+  - result is: ${funcLaunch(...params)}
+  `;
 }
 
 function parseInput (input) {
