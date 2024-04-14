@@ -1,6 +1,7 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import {ListNode} from '../common/list-node';
 import {TreeNode} from '../common/tree';
+import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
 let instance;
 
@@ -129,17 +130,17 @@ class Leetcode2 extends SingletonTemplate {
    * @param {number} n
    * @return {number}
    */
-  solution62(m = 3, n= 2) {
-    const uniquePaths = function(m, n, memo = {}) {
+  solution62(m = 3, n = 2) {
+    const uniquePaths = function (m, n, memo = {}) {
       const key = m + ',' + n;
       if (key in memo) return memo[key];
       if (m === 1 || n === 1) return 1
       if (m === 0 || n === 0) return 0;
 
-      memo[key] = uniquePaths(m-1, n, memo) + uniquePaths(m, n-1, memo);
+      memo[key] = uniquePaths(m - 1, n, memo) + uniquePaths(m, n - 1, memo);
       return memo[key];
     };
-    return uniquePaths(m,n);
+    return uniquePaths(m, n);
   }
 
   /** 35. Search Insert Position
@@ -159,7 +160,7 @@ class Leetcode2 extends SingletonTemplate {
    * @param {number} target
    * @return {number}
    * */
-  solution35(nums = [-3,-2,-1,1,3,5,6], target = -4){
+  solution35(nums = [-3, -2, -1, 1, 3, 5, 6], target = -4) {
     let low = 0;
     let high = nums.length - 1;
     let pos = 0;
@@ -167,15 +168,13 @@ class Leetcode2 extends SingletonTemplate {
     do {
       const mid = (low + high);
       const guess = nums[mid];
-      if( guess === target) {
+      if (guess === target) {
         return mid;
       }
       if (guess > target) {
         high = mid - 1;
         pos = high >= 0 ? high : 0;
-      }
-      else
-      {
+      } else {
         low = mid + 1;
 
         pos = low;
@@ -189,18 +188,18 @@ class Leetcode2 extends SingletonTemplate {
    A string is good if it can be formed by characters from chars (each character can only be used once).
    Return the sum of lengths of all good strings in words.
    Example 1:
-    Input: words = ["cat","bt","hat","tree"], chars = "atach"
-    Output: 6
-    Explanation: The strings that can be formed are "cat" and "hat" so the answer is 3 + 3 = 6.
+   Input: words = ["cat","bt","hat","tree"], chars = "atach"
+   Output: 6
+   Explanation: The strings that can be formed are "cat" and "hat" so the answer is 3 + 3 = 6.
    Example 2:
-    Input: words = ["hello","world","leetcode"], chars = "welldonehoneyr"
-    Output: 10
-    Explanation: The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 10.
+   Input: words = ["hello","world","leetcode"], chars = "welldonehoneyr"
+   Output: 10
+   Explanation: The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 10.
    * @param {string[]} words
    * @param {string} chars
    * @return {number}
    * */
-  solution1160(words= ["cataha","bt","hat","tree"], chars = "atach") {
+  solution1160(words = ['cataha', 'bt', 'hat', 'tree'], chars = 'atach') {
     let result = 0;
     for (let word of words) {
       const wordList = word.split('');
@@ -210,7 +209,7 @@ class Leetcode2 extends SingletonTemplate {
         let res = false;
         const idx = charList.findIndex((el) => el === char);
         if (idx > -1) {
-          charList.splice(idx,1);
+          charList.splice(idx, 1);
           res = true;
         }
         return res;
@@ -225,23 +224,23 @@ class Leetcode2 extends SingletonTemplate {
    Given a string s consisting of words and spaces, return the length of the last word in the string.
    A word is a maximal substring consisting of non-space characters only.
    Example 1:
-     Input: s = "Hello World"
-     Output: 5
-     Explanation: The last word is "World" with length 5.
+   Input: s = "Hello World"
+   Output: 5
+   Explanation: The last word is "World" with length 5.
    Example 2:
-     Input: s = "   fly me   to   the moon  "
-     Output: 4
-     Explanation: The last word is "moon" with length 4.
+   Input: s = "   fly me   to   the moon  "
+   Output: 4
+   Explanation: The last word is "moon" with length 4.
    Example 3:
-     Input: s = "luffy is still joyboy"
-     Output: 6
-     Explanation: The last word is "joyboy" with length 6.
+   Input: s = "luffy is still joyboy"
+   Output: 6
+   Explanation: The last word is "joyboy" with length 6.
    * @param {string} s
    * @return {number}
    * */
-  solution58(s= '   fly me   to   the moon  ') {
-    const sL =  s.trim().split(' ');
-    return sL[sL.length -1].length;
+  solution58(s = '   fly me   to   the moon  ') {
+    const sL = s.trim().split(' ');
+    return sL[sL.length - 1].length;
   }
 
   /** 66. Plus One
@@ -255,8 +254,8 @@ class Leetcode2 extends SingletonTemplate {
    *  Thus, the result should be [1,2,4].
    * @param {number[]} digits
    * @return {number[]}
-  * */
-  solution66(digits = [1,9]) {
+   * */
+  solution66(digits = [1, 9]) {
     for (let i = digits.length - 1; i >= 0; i--) {
       if (digits[i] < 9) {
         digits[i]++;
@@ -272,11 +271,11 @@ class Leetcode2 extends SingletonTemplate {
   /**67. Add Binary
    Given two binary strings a and b, return their sum as a binary string.
    Example 1:
-     Input: a = "11", b = "1"
-     Output: "100"
+   Input: a = "11", b = "1"
+   Output: "100"
    Example 2:
-     Input: a = "1010", b = "1011"
-     Output: "10101"
+   Input: a = "1010", b = "1011"
+   Output: "10101"
    * @param {string} a
    * @param {string} b
    * @return {string}
@@ -284,7 +283,7 @@ class Leetcode2 extends SingletonTemplate {
    *
    * [1,1] + [1,1] = [0,1,1,0]
    * */
-  solution67(a='1101',b='11111'){
+  solution67(a = '1101', b = '11111') {
     const aL = a.split('');
     const bL = b.split('');
     const max = Math.max(aL.length, bL.length);
@@ -301,9 +300,9 @@ class Leetcode2 extends SingletonTemplate {
       }
     }
 
-    for (let i = aL.length -1; i >= 0; i--) {
+    for (let i = aL.length - 1; i >= 0; i--) {
       const res = +aL[i] + (+bL[i] || 0) + add;
-      if (res < 2 ) {
+      if (res < 2) {
         resL.unshift(res);
         add = 0;
       } else if (res === 2) {
@@ -320,6 +319,59 @@ class Leetcode2 extends SingletonTemplate {
     return resL.join('');
   }
 
+  /**70. Climbing Stairs
+   You are climbing a staircase. It takes n steps to reach the top.
+   Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+   Example 1:
+   Input: n = 2
+   Output: 2
+   Explanation: There are two ways to climb to the top.
+   1. 1 step + 1 step
+   2. 2 steps
+   Example 2:
+   Input: n = 3
+   Output: 3
+   Explanation: There are three ways to climb to the top.
+   1. 1 step + 1 step + 1 step
+   2. 1 step + 2 steps
+   3. 2 steps + 1 step
+   * @param {number} n
+   * @return {number}
+   * 1 + 1 + 1 + 1 + 1
+   * 1 + 2 + 2
+   * 2+2+1
+   * 1+1+1+2
+   * 2+1+1+1
+   *
+   * */
+  solution70(n = 5) {
+    for (let i = 0; i <= n; i++) {
+
+    }
+  }
+
+  /** 5. Longest Palindromic Substring
+   * Given a string s, return the longest palindromic substring in s.
+   *  Example 1:
+   *   Input: s = "babad"
+   *   Output: "bab"
+   *   Explanation: "aba" is also a valid answer.
+   *  Example 2:
+   *   Input: s = "cbbd"
+   *   Output: "bb"
+   * Constraints:
+   *  1 <= s.length <= 1000
+   *  s consist of only digits and English letters.
+   * @param {string} s
+   * @return {string}
+   */
+  solution5(s= 'blartradustr') {
+    const length = s.length;
+    for (let i = 0; i < length; i++) {
+
+    }
+    return '';
+  }
 }
 
 export default Leetcode2.getInstance();
