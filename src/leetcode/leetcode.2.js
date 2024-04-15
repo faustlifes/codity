@@ -365,12 +365,32 @@ class Leetcode2 extends SingletonTemplate {
    * @param {string} s
    * @return {string}
    */
-  solution5(s= 'blartradustr') {
-    const length = s.length;
-    for (let i = 0; i < length; i++) {
-
+  solution5(s= 'blarttradustr') {
+    if (s.length === 0) {
+      return '';
     }
-    return '';
+
+    function findPhrase(l,r, phr) {
+      while(l >= 0 && r < phr.length && phr[l] === phr[r]) {
+        l--;
+        r++;
+      }
+      return { l: l + 1, r: r - 1 };
+    }
+
+    let longest = { l: 0, r: 0 };
+
+    for (let i = 0; i < s.length; ++i) {
+      const odd = findPhrase(i,i,s);
+      if (odd.r - odd.l > longest.r - longest.l) {
+        longest = odd;
+      }
+      const even =  findPhrase(i,i+1, s);
+      if (even.r - even.l > longest.r - longest.l) {
+        longest = even;
+      }
+    }
+    return s.slice(longest.l, longest.r + 1);
   }
 }
 

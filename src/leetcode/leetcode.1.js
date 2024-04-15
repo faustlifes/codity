@@ -193,10 +193,10 @@ class Leetcode1 extends SingletonTemplate {
     return res;
   }
 
-  /*Write a function that takes a string of space separated words as a single
+  /*????Write a function that takes a string of space separated words as a single
     parameter and returns the longest word in that string. Assume that the input s
     string is always a non-empty string and the maximum length of the input string may be limitless.*/
-  solution5(str = 'what time is it now, fdgdsdddddddd') {
+  solution50000(str = 'what time is it now, fdgdsdddddddd') {
     const wordList = str.split(' ') || [];
     wordList.sort((a, b) => b.length - a.length);
     return wordList[0];
