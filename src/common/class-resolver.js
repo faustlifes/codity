@@ -7,6 +7,7 @@ import lesson6 from '../lessons/lesson-6';
 import lesson7 from '../lessons/lesson-7';
 import leetcode1 from '../leetcode/leetcode.1';
 import leetcode2 from '../leetcode/leetcode.2';
+import leetcode3 from '../leetcode/leetcode.3';
 import commonTasks from '../algorithms/common-tasks';
 import quickSearch from '../algorithms/quick-search';
 import divideImpera from '../algorithms/divide-impera';
@@ -24,6 +25,7 @@ export const classResolver = {
     'cl7': lesson7,
     'lt1': leetcode1,
     'lt2': leetcode2,
+    'lt3': leetcode3,
     'ct': commonTasks,
     'quickSearch': quickSearch,
     'divideImpera': divideImpera,

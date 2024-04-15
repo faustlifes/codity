@@ -1,0 +1,163 @@
+import {SingletonTemplate} from '../common/singleton.template';
+
+let instance;
+
+class Leetcode3 extends SingletonTemplate {
+  static getInstance() {
+    return super.getInstance(instance, Leetcode3);
+  }
+
+  /** 1832. Check if the Sentence Is Pangram
+   A pangram is a sentence where every letter of the English alphabet appears at least once.
+   Given a string sentence containing only lowercase English letters, return true if sentence is a pangram, or false otherwise.
+   Example 1:
+   Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+   Output: true
+   Explanation: sentence contains at least one of every letter of the English alphabet.
+   Example 2:
+   Input: sentence = "leetcode"
+   Output: false
+   Constraints: 1 <= sentence.length <= 1000 sentence consists of lowercase English letters.
+   * */
+  /**
+   * @param {string} sentence
+   * @return {boolean}
+   */
+  solution1832(sentence = 'thequickbrownfoxjumpsoverthelazydog') {
+    const l = sentence.length;
+    const map = new Map([['a'], ['b'], ['c'], ['d'], ['e'], ['f'], ['g'], ['h'], ['i'], ['j'], ['k'], ['l'], ['m'], ['n'], ['o'], ['p'], ['q'], ['r'], ['s'], ['t'], ['u'], ['v'], ['w'], ['x'], ['y'], ['z']]);
+    let i = 0;
+    for (i; i < l; i++) {
+      if (map.has(sentence[i])) {
+        map.delete(sentence[i]);
+      }
+    }
+    return map.size === 0;
+  }
+
+  /** 1779. Find Nearest Point That Has the Same X or Y Coordinate
+   You are given two integers, x and y, which represent your current location on a Cartesian grid: (x, y). You are also given an array points where each points[i] = [ai, bi] represents that a point exists at (ai, bi). A point is valid if it shares the same x-coordinate or the same y-coordinate as your location.
+   Return the index (0-indexed) of the valid point with the smallest Manhattan distance from your current location. If there are multiple, return the valid point with the smallest index. If there are no valid points, return -1.
+   The Manhattan distance between two points (x1, y1) and (x2, y2) is abs(x1 - x2) + abs(y1 - y2).
+   Example 1:
+   Input: x = 3, y = 4, points = [[1,2],[3,1],[2,4],[2,3],[4,4]]
+   Output: 2
+   Explanation: Of all the points, only [3,1], [2,4] and [4,4] are valid. Of the valid points, [2,4] and [4,4] have the smallest Manhattan distance from your current location, with a distance of 1. [2,4] has the smallest index, so return 2.
+   Example 2:
+   Input: x = 3, y = 4, points = [[3,4]]
+   Output: 0
+   Explanation: The answer is allowed to be on the same location as your current location.
+   Example 3:
+   Input: x = 3, y = 4, points = [[2,3]]
+   Output: -1
+   Explanation: There are no valid points.
+   Constraints: 1 <= points.length <= 104, points[i].length == 2, 1 <= x, y, ai, bi <= 104
+   * */
+  /**
+   * @param {number} x
+   * @param {number} y
+   * @param {number[][]} points
+   * @return {number}
+   */
+  solution1779(x = 3, y = 4, points = [[1, 2], [3, 1], [2, 4], [2, 3], [4, 4]]) {
+    let minDist = Infinity;
+    let minIndex = -1;
+    for (let i = 0; i < points.length; i++) {
+      if (points[i][0] === x || points[i][1] === y) {
+        const dist = Math.abs(points[i][1] - y) + Math.abs(points[i][0] - x);
+        if (dist < minDist) {
+          minDist = dist;
+          minIndex = i;
+        }
+      }
+    }
+    return minIndex;
+  }
+
+  /** 1689. Partitioning Into Minimum Number Of Deci-Binary Numbers
+   * A decimal number is called deci-binary if each of its digits is either 0 or 1 without any leading zeros. For example, 101 and 1100 are deci-binary, while 112 and 3001 are not.
+   Given a string n that represents a positive decimal integer, return the minimum number of positive deci-binary numbers needed so that they sum up to n.
+   Example 1:
+   Input: n = "32"
+   Output: 3
+   Explanation: 10 + 11 + 11 = 32
+   Example 2:
+   Input: n = "82734"
+   Output: 8
+   Example 3:
+   Input: n = "27346209830709182346"
+   Output: 9
+   Constraints:
+   1 <= n.length <= 105, n consists of only digits., n does not contain any leading zeros and represents a positive integer.
+   * */
+  /**
+   * @param {string} n
+   * @return {number}
+   */
+  solution1689(n = '32') {
+    const digits = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+    for (const item of digits) {
+      if (n.includes(item)) {
+        return item;
+      }
+    }
+    return 0;
+  }
+
+  /** 1603. Design Parking System
+   * Design a parking system for a parking lot. The parking lot has three kinds of parking spaces: big, medium, and small, with a fixed number of slots for each size.
+   * Implement the ParkingSystem class:
+   *   ParkingSystem(int big, int medium, int small) Initializes object of the ParkingSystem class. The number of slots for each parking space are given as part of the constructor.
+   *   bool addCar(int carType) Checks whether there is a parking space of carType for the car that wants to get into the parking lot. carType can be of three kinds: big, medium, or small, which are represented by 1, 2, and 3 respectively. A car can only park in a parking space of its carType. If there is no space available, return false, else park the car in that size space and return true.
+   * Example 1:
+   * Input
+   *   ["ParkingSystem", "addCar", "addCar", "addCar", "addCar"]
+   *   [[1, 1, 0], [1], [2], [3], [1]]
+   *   Output
+   *   [null, true, true, false, false]
+   * Explanation
+   *   ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
+   *   parkingSystem.addCar(1); // return true because there is 1 available slot for a big car
+   *   parkingSystem.addCar(2); // return true because there is 1 available slot for a medium car
+   *   parkingSystem.addCar(3); // return false because there is no available slot for a small car
+   *   parkingSystem.addCar(1); // return false because there is no available slot for a big car. It is already occupied.
+   * Constraints: 0 <= big, medium, small <= 1000, carType is 1, 2, or 3, At most 1000 calls will be made to addCar
+   * */
+  solution1603() {
+    const res = [null];
+    /**
+     * @param {number} big
+     * @param {number} medium
+     * @param {number} small
+     */
+    const ParkingSystem = function (big, medium, small) {
+      this.parking = {
+        '1': big,
+        '2': medium,
+        '3': small
+      };
+    };
+
+    /**
+     * @param {number} carType
+     * @return {boolean}
+     */
+    ParkingSystem.prototype.addCar = function (carType) {
+      if (!this.parking[carType]) {
+        return false;
+      }
+      this.parking[carType] -= 1;
+      return true;
+    }
+    const parkingSystem = new ParkingSystem(1, 1, 0);
+    res.push(parkingSystem.addCar(1)); // return true because there is 1 available slot for a big car
+    res.push(parkingSystem.addCar(2)); // return true because there is 1 available slot for a medium car
+    res.push(parkingSystem.addCar(3)); // return false because there is no available slot for a small car
+    res.push(parkingSystem.addCar(1)); // return false because there is no available slot for a big car. It is already occupied.
+
+    return res;
+  }
+
+}
+
+export default Leetcode3.getInstance();
