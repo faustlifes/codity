@@ -1,12 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class QuickSearch extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, QuickSearch);
-  }
-
+class QuickSearch {
 /*
   solve([1,2,8,7]) = 4 => we can get 1, 2, 3 (from 1+2), but we cannot get 4. 4 is the minimum number not possible from the list.
   solve([4,1,2,3,12]) = 11. We can get 1, 2, 3, 4, 4+1=5, 4+2=6,4+3=7,4+3+1=8,4+3+2=9,4+3+2+1=10. But not 11.
@@ -24,4 +17,4 @@ class QuickSearch extends SingletonTemplate {
   }
 }
 
-export default QuickSearch.getInstance()
+export default QuickSearch;

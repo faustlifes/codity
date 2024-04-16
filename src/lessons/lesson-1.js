@@ -1,6 +1,3 @@
-import { SingletonTemplate } from '../common/singleton.template';
-
-let instance;
 
 function converToBinary(a) {
   let tmp = a, binary = '';
@@ -11,10 +8,7 @@ function converToBinary(a) {
   return binary;
 }
 
-class Lesson1 extends SingletonTemplate {
-  static getInstance() {
-     return super.getInstance(instance, Lesson1);
-  }
+class Lesson1 {
 
   solution1(N = [1024]) {
     const binaryStr = converToBinary(N).toString();
@@ -38,4 +32,4 @@ class Lesson1 extends SingletonTemplate {
 
 }
 
-export default Lesson1.getInstance();
+export default Lesson1;

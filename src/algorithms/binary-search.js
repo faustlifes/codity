@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class BinarySearchLesson extends SingletonTemplate {
-    static getInstance() {
-        return super.getInstance(instance, BinarySearchLesson);
-    }
+class BinarySearchLesson {
 
     solution1(list = [1000,12,60,190.230,456,1,2,3,4,56], item) {
         list = list.sort((a,b) => a - b);
@@ -31,4 +25,4 @@ class BinarySearchLesson extends SingletonTemplate {
 
 }
 
-export default BinarySearchLesson.getInstance();
+export default BinarySearchLesson;

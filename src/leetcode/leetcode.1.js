@@ -1,12 +1,7 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import { ListNode, LinkedList } from '../common/list-node';
 
-let instance;
-
-class Leetcode1 extends SingletonTemplate {
-  static getInstance() {
-    return super.getInstance(instance, Leetcode1);
-  }
+class LeetCode1 {
 
   /**
    * 1672. Richest Customer Wealth
@@ -517,4 +512,4 @@ class Leetcode1 extends SingletonTemplate {
   }
 }
 
-export default Leetcode1.getInstance();
+export default LeetCode1;

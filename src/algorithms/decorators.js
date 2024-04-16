@@ -1,6 +1,3 @@
-import { SingletonTemplate } from '../common/singleton.template';
-
-let instance;
 
 function readonly(target, property, descriptor) {
   descriptor.writable = false;
@@ -19,24 +16,21 @@ function log(logMessage) {
 
       // вызов исходного метода
       // `this` указываем на экземпляр
-      return originalMethod.call(this, ...args);
+      return originalMethod.apply(this, ...args);
     };
 
     return descriptor;
   }
 }
 
-class CommonTasks extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, CommonTasks);
-  }
+class Decorators {
 
   /*create your own decorator*/
   @readonly
   @log('this method was called')
-  solution = () => {
+  solution1() {
    return this;
   }
 }
 
-export default CommonTasks.getInstance();
+export default Decorators;

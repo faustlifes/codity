@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class Lesson4 extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, Lesson4);
-  }
+class Lesson4 {
   /*FrogRiverOne Lesson4.1
   Find the earliest time when a frog can jump to the other side of a river.*/
   solution1 (X = 5, A = [1,3,1,4,2,3,5,4]) {
@@ -106,4 +100,4 @@ Find the smallest positive integer that does not occur in a given sequence.*/
   }
 }
 
-export default Lesson4.getInstance();
+export default Lesson4;

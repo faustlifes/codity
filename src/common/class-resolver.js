@@ -1,35 +1,37 @@
-import lesson1 from '../lessons/lesson-1';
-import lesson2 from '../lessons/lesson-2';
-import lesson3 from '../lessons/lesson-3';
-import lesson4 from '../lessons/lesson-4';
-import lesson5 from '../lessons/lesson-5';
-import lesson6 from '../lessons/lesson-6';
-import lesson7 from '../lessons/lesson-7';
-import leetcode1 from '../leetcode/leetcode.1';
-import leetcode2 from '../leetcode/leetcode.2';
-import leetcode3 from '../leetcode/leetcode.3';
-import commonTasks from '../algorithms/common-tasks';
-import quickSearch from '../algorithms/quick-search';
-import divideImpera from '../algorithms/divide-impera';
-import maxWaterArea from '../algorithms/maxWaterArea';
-import binarySearchLesson from '../algorithms/binary-search';
-import appleTask from '../algorithms/apple-task';
+import Lesson1 from '../lessons/lesson-1';
+import Lesson2 from '../lessons/lesson-2';
+import Lesson3 from '../lessons/lesson-3';
+import Lesson4 from '../lessons/lesson-4';
+import Lesson5 from '../lessons/lesson-5';
+import Lesson6 from '../lessons/lesson-6';
+import Lesson7 from '../lessons/lesson-7';
+import LeetCode1 from '../leetcode/leetcode.1';
+import LeetCode2 from '../leetcode/leetcode.2';
+import LeetCode3 from '../leetcode/leetcode.3';
+import Decorators from '../algorithms/decorators';
+import QuickSearch from '../algorithms/quick-search';
+import DivideImpera from '../algorithms/divide-impera';
+import MaxWaterArea from '../algorithms/maxWaterArea';
+import BinarySearchLesson from '../algorithms/binary-search';
+import AppleTask from '../algorithms/apple-task';
+
+
 
 export const classResolver = {
-    'cl1': lesson1,
-    'cl2': lesson2,
-    'cl3': lesson3,
-    'cl4': lesson4,
-    'cl5': lesson5,
-    'cl6': lesson6,
-    'cl7': lesson7,
-    'lt1': leetcode1,
-    'lt2': leetcode2,
-    'lt3': leetcode3,
-    'ct': commonTasks,
-    'quickSearch': quickSearch,
-    'divideImpera': divideImpera,
-    'maxWaterArea': maxWaterArea,
-    'bsrc': binarySearchLesson,
-    'ap': appleTask,
+    'cl1': new Lesson1(),
+    'cl2': new Lesson2(),
+    'cl3': new Lesson3(),
+    'cl4': new Lesson4(),
+    'cl5': new Lesson5(),
+    'cl6': new Lesson6(),
+    'cl7': new Lesson7(),
+    'lt1': new LeetCode1(),
+    'lt2': new LeetCode2(),
+    'lt3': new LeetCode3(),
+    'dcrts': new Decorators(),
+    'quickSearch': new QuickSearch(),
+    'divideImpera': new DivideImpera(),
+    'maxWaterArea': new MaxWaterArea(),
+    'bsrc': new BinarySearchLesson(),
+    'appl': new AppleTask(),
 };

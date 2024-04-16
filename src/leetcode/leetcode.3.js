@@ -1,11 +1,5 @@
-import {SingletonTemplate} from '../common/singleton.template';
 
-let instance;
-
-class Leetcode3 extends SingletonTemplate {
-  static getInstance() {
-    return super.getInstance(instance, Leetcode3);
-  }
+class LeetCode3 {
 
   /** 1832. Check if the Sentence Is Pangram
    A pangram is a sentence where every letter of the English alphabet appears at least once.
@@ -158,6 +152,98 @@ class Leetcode3 extends SingletonTemplate {
     return res;
   }
 
+  /** 1512. Number of Good Pairs
+   *   Given an array of integers nums, return the number of good pairs.
+   *   A pair (i, j) is called good if nums[i] == nums[j] and i < j.
+   * Example 1:
+   *   Input: nums = [1,2,3,1,1,3]
+   *   Output: 4
+   *   Explanation: There are 4 good pairs (0,3), (0,4), (3,4), (2,5) 0-indexed.
+   * Example 2:
+   *   Input: nums = [1,1,1,1]
+   *   Output: 6
+   *   Explanation: Each pair in the array are good.
+   * Example 3:
+   *   Input: nums = [1,2,3]
+   *   Output: 0
+   * Constraints: 1 <= nums.length <= 100, 1 <= nums[i] <= 100
+   * */
+  /**
+   * @param {number[]} nums
+   * @return {number}
+   */
+  solution1512(nums= [1,2,3,1,1,3]){
+    const pairs = {};
+    let counter = 0;
+    for (let i = 0; i < nums.length; i++) {
+      if (pairs[nums[i].toString()]) {
+        counter += pairs[nums[i].toString()];
+        pairs[nums[i].toString()] +=1;
+      } else {
+        pairs[nums[i].toString()] = 1;
+      }
+
+    }
+    return counter;
+  }
+
+  /** 1480. Running Sum of 1d Array
+   * Given an array nums. We define a running sum of an array as runningSum[i] = sum(nums[0]…nums[i]).
+   * Return the running sum of nums.
+   * Example 1:
+   *   Input: nums = [1,2,3,4]
+   *   Output: [1,3,6,10]
+   *   Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+   * Example 2:
+   *   Input: nums = [1,1,1,1,1]
+   *   Output: [1,2,3,4,5]
+   *   Explanation: Running sum is obtained as follows: [1, 1+1, 1+1+1, 1+1+1+1, 1+1+1+1+1].
+   * Example 3:
+   *   Input: nums = [3,1,2,10,1]
+   *   Output: [3,4,6,16,17]
+   * Constraints: 1 <= nums.length <= 1000, -10^6 <= nums[i] <= 10^6
+   * */
+  /**
+   * @param {number[]} nums
+   * @return {number[]}
+   */
+  solution1480(nums) {
+    const runningSum = [nums[0]];
+    let sum = 0;
+    let i;
+    for (i = 1; i < nums.length; i++) {
+      runningSum.push(runningSum[i-1] + nums[i]);
+    }
+    return runningSum;
+  }
+/** 1470. Shuffle the Array
+ *   Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+ *   Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+ * Example 1:
+ *   Input: nums = [2,5,1,3,4,7], n = 3
+ *   Output: [2,3,5,4,1,7]
+ *   Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+ * Example 2:
+ *   Input: nums = [1,2,3,4,4,3,2,1], n = 4
+ *   Output: [1,4,2,3,3,2,4,1]
+ * Example 3:
+ *   Input: nums = [1,1,2,2], n = 2
+ *   Output: [1,2,1,2]
+ * Constraints: 1 <= n <= 500, nums.length == 2n, 1 <= nums[i] <= 10^3
+ * */
+  /**
+   * @param {number[]} nums
+   * @param {number} n
+   * @return {number[]}
+   */
+  solution1470(nums, n) {
+    const res = [];
+    for (let i = 0; i < n; i++) {
+      res.push(nums[i], nums[n+i]);
+    }
+    return res;
+  };
+
 }
 
-export default Leetcode3.getInstance();
+export default LeetCode3;

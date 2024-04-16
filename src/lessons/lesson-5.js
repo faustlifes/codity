@@ -1,11 +1,7 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
 /*count range sum from prefix sum A[i,j] = A[j] - A[i - 1]*/
-class Lesson5 extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, Lesson5 );
-  }
+class Lesson5 {
+
   /*count range sum from prefix sum A[i,j] = A[j] - A[i - 1]*/
   /* LESSON 5.1 PassingCars */
   solution1 (A = [0,1,0,1,1,0,1,1]) {
@@ -81,4 +77,4 @@ class Lesson5 extends SingletonTemplate {
   }
 }
 
-export default Lesson5.getInstance();
+export default Lesson5;
