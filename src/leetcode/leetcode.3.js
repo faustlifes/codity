@@ -173,13 +173,13 @@ class LeetCode3 {
    * @param {number[]} nums
    * @return {number}
    */
-  solution1512(nums= [1,2,3,1,1,3]){
+  solution1512(nums = [1, 2, 3, 1, 1, 3]) {
     const pairs = {};
     let counter = 0;
     for (let i = 0; i < nums.length; i++) {
       if (pairs[nums[i].toString()]) {
         counter += pairs[nums[i].toString()];
-        pairs[nums[i].toString()] +=1;
+        pairs[nums[i].toString()] += 1;
       } else {
         pairs[nums[i].toString()] = 1;
       }
@@ -213,25 +213,26 @@ class LeetCode3 {
     let sum = 0;
     let i;
     for (i = 1; i < nums.length; i++) {
-      runningSum.push(runningSum[i-1] + nums[i]);
+      runningSum.push(runningSum[i - 1] + nums[i]);
     }
     return runningSum;
   }
-/** 1470. Shuffle the Array
- *   Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
- *   Return the array in the form [x1,y1,x2,y2,...,xn,yn].
- * Example 1:
- *   Input: nums = [2,5,1,3,4,7], n = 3
- *   Output: [2,3,5,4,1,7]
- *   Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
- * Example 2:
- *   Input: nums = [1,2,3,4,4,3,2,1], n = 4
- *   Output: [1,4,2,3,3,2,4,1]
- * Example 3:
- *   Input: nums = [1,1,2,2], n = 2
- *   Output: [1,2,1,2]
- * Constraints: 1 <= n <= 500, nums.length == 2n, 1 <= nums[i] <= 10^3
- * */
+
+  /** 1470. Shuffle the Array
+   *   Given the array nums consisting of 2n elements in the form [x1,x2,...,xn,y1,y2,...,yn].
+   *   Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+   * Example 1:
+   *   Input: nums = [2,5,1,3,4,7], n = 3
+   *   Output: [2,3,5,4,1,7]
+   *   Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
+   * Example 2:
+   *   Input: nums = [1,2,3,4,4,3,2,1], n = 4
+   *   Output: [1,4,2,3,3,2,4,1]
+   * Example 3:
+   *   Input: nums = [1,1,2,2], n = 2
+   *   Output: [1,2,1,2]
+   * Constraints: 1 <= n <= 500, nums.length == 2n, 1 <= nums[i] <= 10^3
+   * */
   /**
    * @param {number[]} nums
    * @param {number} n
@@ -240,41 +241,42 @@ class LeetCode3 {
   solution1470(nums, n) {
     const res = [];
     for (let i = 0; i < n; i++) {
-      res.push(nums[i], nums[n+i]);
+      res.push(nums[i], nums[n + i]);
     }
     return res;
   };
-/** 1431. Kids With the Greatest Number of Candies
- * There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
- * Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
- * Note that multiple kids can have the greatest number of candies.
- * Example 1:
- *   Input: candies = [2,3,5,1,3], extraCandies = 3
- *   Output: [true,true,true,false,true]
- *   Explanation: If you give all extraCandies to:
- *   - Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
- *   - Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
- *   - Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
- *   - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
- *   - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
- * Example 2:
- *   Input: candies = [4,2,1,1,2], extraCandies = 1
- *   Output: [true,false,false,false,false]
- *   Explanation: There is only 1 extra candy.
- *   Kid 1 will always have the greatest number of candies, even if a different kid is given the extra candy.
- * Example 3:
- *  Input: candies = [12,1,12], extraCandies = 10
- *  Output: [true,false,true]
- *  Constraints: n == candies.length, 2 <= n <= 100, 1 <= candies[i] <= 100, 1 <= extraCandies <= 50
- * */
+
+  /** 1431. Kids With the Greatest Number of Candies
+   * There are n kids with candies. You are given an integer array candies, where each candies[i] represents the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies that you have.
+   * Return a boolean array result of length n, where result[i] is true if, after giving the ith kid all the extraCandies, they will have the greatest number of candies among all the kids, or false otherwise.
+   * Note that multiple kids can have the greatest number of candies.
+   * Example 1:
+   *   Input: candies = [2,3,5,1,3], extraCandies = 3
+   *   Output: [true,true,true,false,true]
+   *   Explanation: If you give all extraCandies to:
+   *   - Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the kids.
+   *   - Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+   *   - Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the kids.
+   *   - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
+   *   - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
+   * Example 2:
+   *   Input: candies = [4,2,1,1,2], extraCandies = 1
+   *   Output: [true,false,false,false,false]
+   *   Explanation: There is only 1 extra candy.
+   *   Kid 1 will always have the greatest number of candies, even if a different kid is given the extra candy.
+   * Example 3:
+   *  Input: candies = [12,1,12], extraCandies = 10
+   *  Output: [true,false,true]
+   *  Constraints: n == candies.length, 2 <= n <= 100, 1 <= candies[i] <= 100, 1 <= extraCandies <= 50
+   * */
   /**
    * @param {number[]} candies
    * @param {number} extraCandies
    * @return {boolean[]}
    */
-  solution1431(candies = [2,3,5,1,3], extraCandies = 3){
+  solution1431(candies = [2, 3, 5, 1, 3], extraCandies = 3) {
     const max = Math.max(...candies);
-    return candies.map(child => max <= child+extraCandies);
+    return candies.map(child => max <= child + extraCandies);
   }
 
   /** 1379. Find a Corresponding Node of a Binary Tree in a Clone of That Tree
@@ -303,10 +305,76 @@ class LeetCode3 {
       }
       return getTargetCopy(original, cloned.left, target) || getTargetCopy(original, cloned.right, target);
     }
-    const tree = TreeNode.ArrToTN([7,4,3,null,null,6,19]),
-      cloned = TreeNode.ArrToTN([7,4,3,null,null,6,19]),
+
+    const tree = TreeNode.ArrToTN([7, 4, 3, null, null, 6, 19]),
+      cloned = TreeNode.ArrToTN([7, 4, 3, null, null, 6, 19]),
       target = 3
     return getTargetCopy(tree, cloned, target);
+  }
+
+  /** 1108. Defanging an IP Address
+   * Given a valid (IPv4) IP address, return a defanged version of that IP address.
+   * A defanged IP address replaces every period "." with "[.]".
+   * Example 1:
+   *   Input: address = "1.1.1.1"
+   *   Output: "1[.]1[.]1[.]1"
+   * Example 2:
+   *   Input: address = "255.100.50.0"
+   *   Output: "255[.]100[.]50[.]0"
+   * Constraints: The given address is a valid IPv4 address.
+   * @param {string} address
+   * @return {string}
+   * */
+  solution1108(address) {
+    return address.split('.').join('[.]');
+  }
+
+  /** 966. Vowel Spellchecker
+   * Given a wordlist, we want to implement a spellchecker that converts a query word into a correct word.
+   * For a given query word, the spell checker handles two categories of spelling mistakes:
+   * Capitalization: If the query matches a word in the wordlist (case-insensitive), then the query word is returned with the same case as the case in the wordlist.
+   * Example: wordlist = ["yellow"], query = "YellOw": correct = "yellow"
+   * Example: wordlist = ["Yellow"], query = "yellow": correct = "Yellow"
+   * Example: wordlist = ["yellow"], query = "yellow": correct = "yellow"
+   * Vowel Errors: If after replacing the vowels ('a', 'e', 'i', 'o', 'u') of the query word with any vowel individually, it matches a word in the wordlist (case-insensitive), then the query word is returned with the same case as the match in the wordlist.
+   * Example: wordlist = ["YellOw"], query = "yollow": correct = "YellOw"
+   * Example: wordlist = ["YellOw"], query = "yeellow": correct = "" (no match)
+   * Example: wordlist = ["YellOw"], query = "yllw": correct = "" (no match)
+   * In addition, the spell checker operates under the following precedence rules:
+   * When the query exactly matches a word in the wordlist (case-sensitive), you should return the same word back.
+   * When the query matches a word up to capitlization, you should return the first such match in the wordlist.
+   * When the query matches a word up to vowel errors, you should return the first such match in the wordlist.
+   * If the query has no matches in the wordlist, you should return the empty string.
+   * Given some queries, return a list of words answer, where answer[i] is the correct word for query = queries[i].
+   * Example 1:
+   *   Input: wordlist = ["KiTe","kite","hare","Hare"], queries = ["kite","Kite","KiTe","Hare","HARE","Hear","hear","keti","keet","keto"]
+   *   Output: ["kite","KiTe","KiTe","Hare","hare","","","KiTe","","KiTe"]
+   * Example 2:
+   *   Input: wordlist = ["yellow"], queries = ["YellOw"]
+   *   Output: ["yellow"]
+   * */
+  solution966(wordlist, queries) {
+    const origin = new Set(wordlist), lower = new Map(), mask = new Map();
+    const regex = /[aeiou]/g;
+
+    for (let i = wordlist.length - 1; ~i; i--) {
+      const word = wordlist[i];
+      const wlow = word.toLowerCase();
+      lower.set(wlow, word);
+      mask.set(wlow.replace(regex, '*'), word);
+    }
+    for (let q in queries) {
+      const query = queries[q];
+      const qlow = query.toLowerCase();
+      const qmask = qlow.replace(regex, '*');
+      if (origin.has(queries[q])) {
+        continue;
+      } else {
+        queries[q] = lower.get(qlow) || mask.get(qmask) || '';
+      }
+
+    }
+    return queries;
   }
 }
 
