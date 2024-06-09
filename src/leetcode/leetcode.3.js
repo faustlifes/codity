@@ -395,7 +395,7 @@ class LeetCode3 {
    * @param {string} S
    * @return {string}
    */
-  solution(S) {
+  solution824(S) {
     const wordList = S.split(' ');
     const vowels = ['A','a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u'];
     return wordList.map((word, i) => {
