@@ -482,11 +482,11 @@ class LeetCode3 {
    * @param {number} num
    * @return {number}
    * */
-   solution258(num= 48) {
-    function digits(arr = ''){
-      if(arr.length === 1) return Number(arr);
+  solution258(num = 48) {
+    function digits(arr = '') {
+      if (arr.length === 1) return Number(arr);
       let sum = 0;
-      for(let i = 0; i < arr.length ; i++) {
+      for (let i = 0; i < arr.length; i++) {
         sum += Number(arr[i]);
       }
       return digits(sum.toString());
@@ -495,6 +495,76 @@ class LeetCode3 {
     return digits(num.toString());
   }
 
+  /** 211. Design Add and Search Words Data Structure
+   * Design a data structure that supports adding new words and finding if a string matches any previously added string.
+   * Implement the WordDictionary class:
+   * WordDictionary() Initializes the object.
+   * void addWord(word) Adds word to the data structure, it can be matched later.
+   * bool search(word) Returns true if there is any string in the data structure that matches word or false otherwise. word may contain dots '.' where dots can be matched with any letter.
+   * Example:
+   *  Input
+   *   ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
+   *   [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
+   * Output
+   *  [null,null,null,null,false,true,true,true]
+   * Explanation
+   *   WordDictionary wordDictionary = new WordDictionary();
+   *   wordDictionary.addWord("bad");
+   *   wordDictionary.addWord("dad");
+   *   wordDictionary.addWord("mad");
+   *   wordDictionary.search("pad"); // return False
+   *   wordDictionary.search("bad"); // return True
+   *   wordDictionary.search(".ad"); // return True
+   *   wordDictionary.search("b.."); // return True
+   * @param {string} word
+   * @return {void}
+   * */
+  solution211(word) {
+
+    class WordDictionary {
+      constructor(){
+        this.dictionary = new Map();
+      }
+
+      addWord(word){
+        const { length } = word;
+        if(!this.dictionary.has(length)) {
+          this.dictionary.set(length, new Set());
+        }
+        this.dictionary.get(length).add(word);
+      }
+
+      search(word){
+        if(!this.dictionary.has(word.length)) return false;
+
+        const list = this.dictionary.get(word.length);
+        if(!word.includes('.')) return list.has(word);
+
+        for(const candidateWord of list){
+          let match = true;
+
+          for(let i = 0; i < word.length; i++) {
+            if(word[i] !== '.' && word[i] !== candidateWord[i]){
+              match = false;
+              break;
+            }
+          }
+
+          if(match) return true;
+        }
+
+        return false;
+      }
+    }
+    const wordDictionary = new WordDictionary();
+    wordDictionary.addWord("bad");
+    wordDictionary.addWord("dad");
+    wordDictionary.addWord("mad");
+    console.log(wordDictionary.search("pad")); // return False
+    console.log(wordDictionary.search("bad")); // return True
+    console.log(wordDictionary.search(".ad")); // return True
+    console.log(wordDictionary.search("b..")); // return True
+  }
 }
 
 export default LeetCode3;
