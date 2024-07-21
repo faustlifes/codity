@@ -210,7 +210,6 @@ class LeetCode3 {
    */
   solution1480(nums) {
     const runningSum = [nums[0]];
-    let sum = 0;
     let i;
     for (i = 1; i < nums.length; i++) {
       runningSum.push(runningSum[i - 1] + nums[i]);
@@ -376,6 +375,7 @@ class LeetCode3 {
     }
     return queries;
   }
+
   /** 824. Goat Latin
    * You are given a string sentence that consist of words separated by spaces. Each word consists of lowercase and uppercase letters only.
    * We would like to convert the sentence to "Goat Latin" (a made-up language similar to Pig Latin.) The rules of Goat Latin are as follows:
@@ -397,16 +397,17 @@ class LeetCode3 {
    */
   solution824(S) {
     const wordList = S.split(' ');
-    const vowels = ['A','a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u'];
+    const vowels = ['A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u'];
     return wordList.map((word, i) => {
       let newWord = word;
       if (!vowels.includes(word[0])) {
-        newWord = word.substring(1,word.length) + word[0];
+        newWord = word.substring(1, word.length) + word[0];
       }
-      newWord += 'ma'+'a'.repeat(i+1);
+      newWord += 'ma' + 'a'.repeat(i + 1);
       return newWord;
     }).join(' ');
   }
+
   /** 807. Max Increase to Keep City Skyline
    * There is a city composed of n x n blocks, where each block contains a single building shaped like a vertical square prism. You are given a 0-indexed n x n integer matrix grid where grid[r][c] represents the height of the building located in the block at row r and column c.
    * A city's skyline is the outer contour formed by all the building when viewing the side of the city from a distance. The skyline from each cardinal direction north, east, south, and west may be different.
@@ -441,6 +442,58 @@ class LeetCode3 {
     return diff;
   }
 
+  /** 771. Jewels and Stones
+   *  You're given strings jewels representing the types of stones that are jewels, and stones representing the stones you have. Each character in stones is a type of stone you have. You want to know how many of the stones you have are also jewels.
+   *  Letters are case sensitive, so "a" is considered a different type of stone from "A".
+   *  Example 1:
+   *    Input: jewels = "aA", stones = "aAAbbbb"
+   *    Output: 3
+   *  Example 2:
+   *    Input: jewels = "z", stones = "ZZ"
+   *    Output: 0
+   * @param {string} jewels
+   * @param {string} stones
+   * @return {number}
+   * */
+  solution771(jewels = 'aA', stones = 'aAAbbbb') {
+    let count = 0;
+    for (let jew of jewels) {
+      for (let sto of stones) {
+        if (sto === jew) {
+          count++
+        }
+      }
+    }
+    return count;
+  }
+
+  /** 258. Add Digits
+   * Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
+   * Example 1
+   *   Input: num = 38
+   *   Output: 2
+   * Explanation: The process is
+   *   38 --> 3 + 8 --> 11
+   *   11 --> 1 + 1 --> 2
+   *  Since 2 has only one digit, return it.
+   * Example 2:
+   *   Input: num = 0
+   *   Output: 0
+   * @param {number} num
+   * @return {number}
+   * */
+   solution258(num= 48) {
+    function digits(arr = ''){
+      if(arr.length === 1) return Number(arr);
+      let sum = 0;
+      for(let i = 0; i < arr.length ; i++) {
+        sum += Number(arr[i]);
+      }
+      return digits(sum.toString());
+    }
+
+    return digits(num.toString());
+  }
 
 }
 
