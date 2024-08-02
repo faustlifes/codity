@@ -616,7 +616,7 @@ class LeetCode3 {
    *   Output: false
    *   Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
    * */
-  solution55(nums=[3,2,1,0,4]) {
+  solution55(nums = [3, 2, 1, 0, 4]) {
     let curFar = nums[0];
     let curEnd = 0;
     let ans = 0;
@@ -629,6 +629,48 @@ class LeetCode3 {
       }
     }
     return curEnd >= nums.length - 1;
+  }
+
+  /** 20. Valid Parentheses
+   * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+   * An input string is valid if:
+   * Open brackets must be closed by the same type of brackets.
+   * Open brackets must be closed in the correct order.
+   * Every close bracket has a corresponding open bracket of the same type.
+   * Example 1:
+   *   Input: s = "()"
+   *   Output: true
+   * Example 2:
+   *   Input: s = "()[]{}"
+   *   Output: true
+   * Example 3:
+   *   Input: s = "(]"
+   *   Output: false
+   *  @param {string} s
+   *  @return {boolean}
+   * */
+  solution20(s) {
+    const l = s.length;
+    if (l % 2 !== 0) {
+      return 0;
+    }
+    const pairs = {'{': '}', '(': ')', '[': ']'};
+    const openBrackets = ['{', '[', '('];
+    const stack = [];
+
+    for (let i = 0; i < l; i++) {
+      if (openBrackets.includes(s[i])) {
+        stack.push(s[i]);
+      } else if (s[i] === pairs[stack[stack.length - 1]]) {
+        stack.pop();
+      } else {
+        return false;
+      }
+    }
+    if (stack.length === 0) {
+      return true;
+    }
+    return false;
   }
 }
 
