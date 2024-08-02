@@ -667,10 +667,7 @@ class LeetCode3 {
         return false;
       }
     }
-    if (stack.length === 0) {
-      return true;
-    }
-    return false;
+    return stack.length === 0;
   }
 
   /** 15. 3Sum
@@ -696,7 +693,7 @@ class LeetCode3 {
    * @param {number[]} nums
    * @return {number[][]}
    * */
-  solution15(nums = [-1,0,1,2,-1,-4]) {
+  solution15(nums = [-1, 0, 1, 2, -1, -4]) {
     let finalArr = [];
     nums.sort((a, b) => a - b)
     for (let i = 0; i < nums.length; i++) {
@@ -722,7 +719,30 @@ class LeetCode3 {
       }
     }
     return finalArr;
+  }
 
+  /** 9. Palindrome Number
+   * Given an integer x, return true if x is a palindrome, and false otherwise.
+   * Example 1:
+   *   Input: x = 121
+   *   Output: true
+   *   Explanation: 121 reads as 121 from left to right and from right to left.
+   * Example 2:
+   *   Input: x = -121
+   *   Output: false
+   *   Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+   * Example 3:
+   *   Input: x = 10
+   *   Output: false
+   *   Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+   * @param {number} x
+   * @return {boolean}
+   * */
+  solution9(x) {
+    let newString = x.toString().split('');
+    let reversString = newString.reverse().join('');
+    let forwardString = x.toString();
+    return forwardString === reversString;
   }
 }
 
