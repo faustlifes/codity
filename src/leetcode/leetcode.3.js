@@ -519,51 +519,89 @@ class LeetCode3 {
    * @param {string} word
    * @return {void}
    * */
-  solution211(word) {
+  static solution211(word) {
 
     class WordDictionary {
-      constructor(){
+      constructor() {
         this.dictionary = new Map();
       }
 
-      addWord(word){
-        const { length } = word;
-        if(!this.dictionary.has(length)) {
+      addWord(word) {
+        const {length} = word;
+        if (!this.dictionary.has(length)) {
           this.dictionary.set(length, new Set());
         }
         this.dictionary.get(length).add(word);
       }
 
-      search(word){
-        if(!this.dictionary.has(word.length)) return false;
+      search(word) {
+        if (!this.dictionary.has(word.length)) return false;
 
         const list = this.dictionary.get(word.length);
-        if(!word.includes('.')) return list.has(word);
+        if (!word.includes('.')) return list.has(word);
 
-        for(const candidateWord of list){
+        for (const candidateWord of list) {
           let match = true;
 
-          for(let i = 0; i < word.length; i++) {
-            if(word[i] !== '.' && word[i] !== candidateWord[i]){
+          for (let i = 0; i < word.length; i++) {
+            if (word[i] !== '.' && word[i] !== candidateWord[i]) {
               match = false;
               break;
             }
           }
 
-          if(match) return true;
+          if (match) return true;
         }
 
         return false;
       }
     }
+
     const wordDictionary = new WordDictionary();
-    wordDictionary.addWord("bad");
-    wordDictionary.addWord("dad");
-    wordDictionary.addWord("mad");
-    console.log(wordDictionary.search("pad")); // return False
-    console.log(wordDictionary.search("bad")); // return True
-    console.log(wordDictionary.search(".ad")); // return True
-    console.log(wordDictionary.search("b..")); // return True
+    wordDictionary.addWord('bad');
+    wordDictionary.addWord('dad');
+    wordDictionary.addWord('mad');
+    console.log(wordDictionary.search('pad')); // return False
+    console.log(wordDictionary.search('bad')); // return True
+    console.log(wordDictionary.search('.ad')); // return True
+    console.log(wordDictionary.search('b..')); // return True
+  }
+
+  /** 202. Happy Number
+   * Write an algorithm to determine if a number n is happy.
+   * A happy number is a number defined by the following process:
+   * Starting with any positive integer, replace the number by the sum of the squares of its digits.
+   * Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+   * Those numbers for which this process ends in 1 are happy.
+   * Return true if n is a happy number, and false if not.
+   * Example 1:
+   *  Input: n = 19
+   *  Output: true
+   * Explanation:
+   *   12 + 92 = 82
+   *   82 + 22 = 68
+   *   62 + 82 = 100
+   *   12 + 02 + 02 = 1
+   * Example 2:
+   *  Input: n = 2
+   *  Output: false
+   * @param {number} n
+   * @return {boolean}
+   * */
+  static solution202(n) {
+    let past = [n];
+    while (n > 6) {
+      let m = 0;
+      let l = n;
+      while (l > 0) {
+        m = m + (l % 10) ** 2;
+        l = Math.floor(l / 10);
+      }
+      n = m;
+      if (past.includes(n)) return false; else past.push(n);
+      console.log(n);
+    }
+    return n === 1;
   }
 }
 
