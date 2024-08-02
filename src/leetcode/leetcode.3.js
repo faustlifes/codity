@@ -835,7 +835,7 @@ class LeetCode3 {
     for (let i = 0; i < nums.length; i++) {
       const r = target - nums[i];
       const j = dicc.get(r);
-      if (dicc.has(r) && j != i) return [i, j]
+      if (dicc.has(r) && j !== i) return [i, j]
     }
   }
 }
