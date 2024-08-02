@@ -744,6 +744,38 @@ class LeetCode3 {
     let forwardString = x.toString();
     return forwardString === reversString;
   }
+
+  /** 7. Reverse Integer
+   * Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+   * Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+   * Example 1:
+   *   Input: x = 123
+   *   Output: 321
+   * Example 2:
+   *   Input: x = -123
+   *   Output: -321
+   * Example 3:
+   *   Input: x = 120
+   *   Output: 21
+   * @param {number} x
+   * @return {number}
+   * */
+  solution7(x) {
+    let posX = x;
+    if (x === 0) return x;
+    if (x < 0) posX = -x;
+    let revX = Math.floor(posX % 10);
+    posX = Math.floor(posX / 10);
+    while (posX > 0) {
+      let val = Math.floor(posX % 10);
+      revX = Math.floor((revX * 10) + val);
+      posX = Math.floor(posX / 10);
+    }
+    if (revX > -2147483648 && revX < 2147483648) {
+      if (x < 0) return -revX;
+      else return revX;
+    } else return 0;
+  }
 }
 
 export default LeetCode3;
