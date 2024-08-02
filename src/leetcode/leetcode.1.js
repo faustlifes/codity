@@ -79,7 +79,7 @@ class LeetCode1 {
   /** leetcode
    * task sum3
    **/
-  solution1(nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]) {
+  solutionNot1(nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]) {
     const res = [];
     nums.sort((a, b) => a - b);
     let i;
