@@ -1,11 +1,6 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
 
-class DivideImpera extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, DivideImpera);
-  }
+class DivideImpera {
 
   solution1(lon = 2010, lat = 640) {
     let div = Math.trunc(lon / lat);
@@ -21,4 +16,4 @@ class DivideImpera extends SingletonTemplate {
   }
 }
 
-export default DivideImpera.getInstance();
+export default DivideImpera;

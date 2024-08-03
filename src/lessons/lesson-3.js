@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class Lesson3 extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, Lesson3);
-  }
+class Lesson3 {
 
   solution1 (X = 10, Y = 10000000000, D = 3000) {
     return Math.ceil((Y - X) / D);
@@ -61,4 +55,4 @@ class Lesson3 extends SingletonTemplate {
   }
 }
 
-export default Lesson3.getInstance();
+export default Lesson3;

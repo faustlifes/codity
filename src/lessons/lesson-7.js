@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class Lesson7 extends SingletonTemplate {
-  static getInstance() {
-    return super.getInstance(instance, Lesson7);
-  }
+class Lesson7 {
 
   /* LESSON 7 Brackets*/
   solution1 (S = '{[()()]}') {
@@ -95,4 +89,4 @@ class Lesson7 extends SingletonTemplate {
   }
 }
 
-export default Lesson7.getInstance();
+export default Lesson7;

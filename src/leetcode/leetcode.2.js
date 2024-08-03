@@ -1,15 +1,8 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import {ListNode} from '../common/list-node';
 import {TreeNode} from '../common/tree';
-import {re} from '@babel/core/lib/vendor/import-meta-resolve';
 
-let instance;
-
-class Leetcode2 extends SingletonTemplate {
-  static getInstance() {
-    return super.getInstance(instance, Leetcode2);
-  }
-
+class LeetCode2 {
   /**
    * 28. Find the Index of the First Occurrence in a String
    * Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
@@ -394,4 +387,4 @@ class Leetcode2 extends SingletonTemplate {
   }
 }
 
-export default Leetcode2.getInstance();
+export default LeetCode2;

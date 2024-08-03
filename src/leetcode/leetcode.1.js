@@ -1,12 +1,7 @@
 import {SingletonTemplate} from '../common/singleton.template';
 import { ListNode, LinkedList } from '../common/list-node';
 
-let instance;
-
-class Leetcode1 extends SingletonTemplate {
-  static getInstance() {
-    return super.getInstance(instance, Leetcode1);
-  }
+class LeetCode1 {
 
   /**
    * 1672. Richest Customer Wealth
@@ -84,7 +79,7 @@ class Leetcode1 extends SingletonTemplate {
   /** leetcode
    * task sum3
    **/
-  solution1(nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]) {
+  solutionNot1(nums = [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6]) {
     const res = [];
     nums.sort((a, b) => a - b);
     let i;
@@ -517,4 +512,4 @@ class Leetcode1 extends SingletonTemplate {
   }
 }
 
-export default Leetcode1.getInstance();
+export default LeetCode1;

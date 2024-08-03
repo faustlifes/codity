@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class Lesson2 extends SingletonTemplate {
-  static getInstance () {
-     return super.getInstance(instance, Lesson2);
-  }
+class Lesson2 {
   /*OddOccurrencesInArray lesson2.1*/
   solution1 (A =
                [ 12, 1000, 50, 12, 50, 454, 12, 1024, 34543, 1000, 3, 12, 3, 454, 0, 0, 100000, 34543, 11111, 11111, 100000 ]
@@ -39,4 +33,4 @@ class Lesson2 extends SingletonTemplate {
   }
 }
 
-export default Lesson2.getInstance();
+export default Lesson2;

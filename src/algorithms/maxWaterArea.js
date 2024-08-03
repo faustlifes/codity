@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class MaxWaterArea extends SingletonTemplate {
-    static getInstance () {
-        return super.getInstance(instance, MaxWaterArea);
-    }
+class MaxWaterArea {
 // This solution finds max area of water that can be filled between two columns in array
 /*
 * 4 |                   |
@@ -34,4 +28,4 @@ class MaxWaterArea extends SingletonTemplate {
     }
 }
 
-export default MaxWaterArea.getInstance();
+export default MaxWaterArea;

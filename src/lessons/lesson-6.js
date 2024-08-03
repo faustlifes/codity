@@ -1,11 +1,5 @@
-import { SingletonTemplate } from '../common/singleton.template';
 
-let instance;
-
-class Lesson6 extends SingletonTemplate {
-  static getInstance () {
-    return super.getInstance(instance, Lesson6);
-  }
+class Lesson6 {
 
   /* LESSON 6.1 Distinct count of distinct items*/
   solution1 (A = [4,2,2,5,1,5,8]) {
@@ -70,4 +64,4 @@ class Lesson6 extends SingletonTemplate {
   }
 }
 
-export default Lesson6.getInstance();
+export default Lesson6;
