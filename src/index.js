@@ -17,15 +17,14 @@ async function main() {
     /*rl.on('line', (input) => {
 
     });*/
+    //await readLines();
 }
 
-async function readLines() {
+/*async function readLines() {
     for await (const line of rl) {
         console.log(resolveLessonByNo(line), `\n${question}`);
     }
-}
-
-readLines();
+}*/
 
 main();
 
@@ -59,11 +58,12 @@ async function resolveLessonByNo(lesson) {
     }
     const prms = await askForParams(ls);
     console.log('prms - ', prms);
-    return launchLesson(lesson, ls, []);
+    return launchLesson(lesson, ls, prms||[]);
 }
 
-function parseParams(input) {
-    return input.split(',');
+function parseParams(input, prms) {
+
+    return Reflection.createTypes(input.split(' '), prms);
 }
 
 async function askForParams(fn) {
@@ -71,15 +71,16 @@ async function askForParams(fn) {
     if (!fn) {
         return result;
     }
-    const prms = Reflection.getParamNames(fn).map((param) => {
-        return `'${param.name}' with type [${param.type}]`
-    }).join(', ');
+    const prms = Reflection.getFunctionParams(fn)
+    const prmsString = prms
+        .map((param) => `'${param.name}' with type [${param.type}]`)
+        .join(', ');
 
 
-    const str = `please enter required parameters ${prms}`;
+    const str = `please enter required parameters ${prmsString}`;
     const input = await rl.question(str);
 
-    return parseParams(input) || [];
+    return parseParams(input, prms) || [];
 }
 
 

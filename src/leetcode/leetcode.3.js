@@ -649,7 +649,7 @@ class LeetCode3 {
    *  @param {string} s
    *  @return {boolean}
    * */
-  solution20(s) {
+  solution20(s = '()[]{}') {
     const l = s.length;
     if (l % 2 !== 0) {
       return 0;
@@ -829,7 +829,7 @@ class LeetCode3 {
    * @param {number} target
    * @return {number[]}
    * */
-  solution1(nums, target) {
+  solution1(nums = [3,2,4], target = 6) {
     const dicc = new Map(nums.map((n, i) => ([n, i])));
     console.log(dicc)
     for (let i = 0; i < nums.length; i++) {
