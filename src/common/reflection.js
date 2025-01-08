@@ -1,36 +1,3 @@
-function getParamNames(func) {
-    if (typeof func !== 'function') {
-        throw new Error('Input must be a valid function');
-    }
-
-    const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
-    const ARGUMENT_NAMES = /([^\s,]+)/g;
-
-    // Remove comments and extract parameter list
-    const fnStr = func.toString().replace(STRIP_COMMENTS, '');
-    const paramStr = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')'));
-    const paramList = paramStr.match(ARGUMENT_NAMES) || [];
-
-    // Type detection patterns
-    const typePatterns = [
-        { type: 'string', regex: /^['"].*['"]$/ },
-        { type: 'Object', regex: /^\{.*\}$/ },
-        { type: 'Array', regex: /^\[.*\]$/ },
-        { type: 'number', regex: /^[0-9]+(\.[0-9]+)?$/ },
-        { type: 'bool', regex: /^(true|false)$/ }
-    ];
-
-    // Parse parameter names and infer types
-    return paramList.map(param => {
-        const [name, defaultValue] = param.split('=').map(p => p.trim());
-        const type = defaultValue
-            ? typePatterns.find(pattern => pattern.regex.test(defaultValue))?.type || ''
-            : '';
-
-        return { name, type };
-    });
-}
-
 export class Reflection {
 
     static STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
@@ -44,9 +11,6 @@ export class Reflection {
         {type: 'number', regex: /^[0-9]+(\.[0-9]+)?$/, constructor: (str) => !isNaN(str)? parseFloat(str): undefined},
         {type: 'bool', regex: /^(true|false)$/, constructor: (bool) => bool === 'true'},
     ];
-
-
-
 
     static getFunctionParams(func) {
         const fnStr = func.toString().replace(this.STRIP_COMMENTS, '');
