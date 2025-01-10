@@ -1,8 +1,5 @@
 export class Reflection {
 
-    static #STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
-    //static ARGUMENT_NAMES = /([^\s,]+)/g;
-
     // Type detection patterns
     static typePatterns = [
         {type: 'string', regex: /^['"].*['"]$/, constructor: (s) => s},
@@ -13,10 +10,7 @@ export class Reflection {
     ];
 
     static getFunctionParams(func) {
-        const fnStr = func.toString().replace(this.#STRIP_COMMENTS, '');
-        //const paramStr = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.lastIndexOf(')')).trim();
         const paramStr = this.#getStringParams(func);
-        // const paramList = paramStr.match(this.ARGUMENT_NAMES) || [];
 
         // Parse parameter list, handling nested structures for objects and arrays
         const paramList = [];
@@ -68,31 +62,24 @@ export class Reflection {
     static #getStringParams(inputFunc) {
 
         const funcStr = inputFunc.toString().replace(/\s/g, '');
-        let firstBr = false;
-        let lastBr = false;
         let result = '';
-        let paramValueStarted = false;
-        let paramValueEnded = false;
+        let firstBr = false;
         let isString = false;
-
 
         for (let i = 0; i < funcStr.length; i++) {
             const char = funcStr[i];
             const nextChar = funcStr[i + 1];
 
-            firstBr = firstBr || funcStr[i - 1] === '(';
+            // Update flags
+            firstBr ||= funcStr[i - 1] === '(';
             isString = (isString && nextChar !== `'`) || (char === '=' && nextChar === `'`);
-            paramValueStarted = (char === '=') || nextChar !== ',';
-            paramValueEnded = nextChar === ',';
-            lastBr = (!isString && nextChar === ')');
+            const lastBr = !isString && nextChar === ')';
 
-            if (firstBr) {
-                result += char;
-            }
-            if (lastBr) {
-                break;
-            }
+            // Append characters after the first opening parenthesis
+            if (firstBr) result += char;
 
+            // Stop at the closing parenthesis
+            if (lastBr) break;
         }
 
         return result;
