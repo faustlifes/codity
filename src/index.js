@@ -1,51 +1,29 @@
-import readline from 'readline';
-import { classResolver } from './common/class-resolver';
+import * as readline from 'node:readline/promises';
+import {str} from "./common/constants";
+import Launcher from "./common/launcher";
 
 const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-const question = 'Please enter No of lesson (e.g. 1): ';
-const noTaskErr = `You enter wrong lesson No or it's not completed yet`;
-
-rl.question(question, input => {
-  console.log(resolveLessonByNo(input), `\n${question}`);
+    input: process.stdin,
+    output: process.stdout,
 });
 
-rl.on('line', (input) => {
-  console.log(resolveLessonByNo(input), `\n${question}`);
-});
+async function main() {
+    const launcher = new Launcher(rl);
+    while (true) {
+        let input = await rl.question(str.question);
 
-function launchLesson (lessonNumber, funcLaunch, params) {
-  if (!funcLaunch) {
-    return noTaskErr;
-  }
-  return `  - lesson is: ${lessonNumber}
-  - params is: ${params}
-  - result is: ${funcLaunch(...params)}
-  `;
-}
-
-function parseInput (input) {
-  const res = input.split('.');
-  return { lNumber: res[0], sNumber: res[1] || '' };
-}
-
-
-function resolveLessonByNo (lesson) {
-  const pi = parseInput(lesson);
-  let ls;
-  for (let prop in classResolver) {
-    ls = undefined;
-    if (prop.includes(pi.lNumber)) {
-      ls = classResolver[prop][`solution${pi.sNumber}`];
-      if (ls) {
-        break;
-      }
+        if (input === 'stop') {
+            console.log(str.stopApp)
+            rl.close();
+            process.stdin.destroy();
+            break;
+        }
+        console.log(await launcher.resolveLessonByNo(input));
     }
-  }
-  return launchLesson(lesson, ls,[]);
 }
+
+
+main();
 
 
 
