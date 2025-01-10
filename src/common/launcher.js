@@ -38,13 +38,12 @@ class Launcher {
             }
         }
         const params = await this.#askForParams(ls);
-        console.log('params - ', params);
         return this.#launchLesson(lesson, ls, params || []);
     }
 
     #parseParams(input, params) {
 
-        return Reflection.createTypes(input.split(' '), params);
+        return !!input? Reflection.createTypes(input.split(' '), params) : null;
     }
 
     async #askForParams(fn) {

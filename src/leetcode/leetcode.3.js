@@ -588,7 +588,7 @@ class LeetCode3 {
    * @param {number} n
    * @return {boolean}
    * */
-  solution202(n) {
+  solution202(n = 19) {
     let past = [n];
     while (n > 6) {
       let m = 0;

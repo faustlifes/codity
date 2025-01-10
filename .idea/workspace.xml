@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf68b2f8-930c-4d44-aa7a-145ab371bfc8" name="Changes" comment="clean code">
-      <change afterPath="$PROJECT_DIR$/src/common/constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/common/launcher.js" afterDir="false" />
+    <list default="true" id="bf68b2f8-930c-4d44-aa7a-145ab371bfc8" name="Changes" comment="rewrote index js, added launcher and added support of private methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/launcher.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/launcher.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/reflection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/reflection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/leetcode/leetcode.3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/leetcode.3.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +31,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;faustlifes&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/faustlifes/codity.git&quot;,
+    &quot;accountId&quot;: &quot;df119530-3956-4853-9655-3af612dc29f1&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -50,7 +59,7 @@
     "Node.js.index.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "fix__run",
+    "git-widget-placeholder": "#10 on fix__run",
     "javascript.nodejs.core.library.configured.version": "20.16.0",
     "javascript.nodejs.core.library.typings.version": "20.16.15",
     "node.js.detected.package.eslint": "true",
@@ -90,7 +99,8 @@
       <workItem from="1736220674316" duration="5341000" />
       <workItem from="1736264687488" duration="1296000" />
       <workItem from="1736294386412" duration="9460000" />
-      <workItem from="1736368015259" duration="4561000" />
+      <workItem from="1736368015259" duration="7072000" />
+      <workItem from="1736442592193" duration="8303000" />
     </task>
     <task id="LOCAL-00001" summary="fixed run and added function parameters parser">
       <option name="closed" value="true" />
@@ -124,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736307570774</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="rewrote index js, added launcher and added support of private methods">
+      <option name="closed" value="true" />
+      <created>1736373422101</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736373422101</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,6 +153,25 @@
     <MESSAGE value="added workspace with build config to the version" />
     <MESSAGE value="fixed reflection getFunctionParams with supporting objects and arrays" />
     <MESSAGE value="clean code" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean code" />
+    <MESSAGE value="rewrote index js, added launcher and added support of private methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="rewrote index js, added launcher and added support of private methods" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/common/reflection.js</url>
+          <line>21</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/common/reflection.js</url>
+          <line>63</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

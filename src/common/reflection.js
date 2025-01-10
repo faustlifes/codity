@@ -14,7 +14,8 @@ export class Reflection {
 
     static getFunctionParams(func) {
         const fnStr = func.toString().replace(this.#STRIP_COMMENTS, '');
-        const paramStr = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.indexOf(')'));
+        //const paramStr = fnStr.slice(fnStr.indexOf('(') + 1, fnStr.lastIndexOf(')')).trim();
+        const paramStr = this.#getStringParams(func);
         // const paramList = paramStr.match(this.ARGUMENT_NAMES) || [];
 
         // Parse parameter list, handling nested structures for objects and arrays
@@ -62,6 +63,39 @@ export class Reflection {
         return stringParameters.map((p, index) => {
             return typesPattern[parameters[index]?.type] ? typesPattern[parameters[index]?.type](p) : p
         });
+    }
+
+    static #getStringParams(inputFunc) {
+
+        const funcStr = inputFunc.toString().replace(/\s/g, '');
+        let firstBr = false;
+        let lastBr = false;
+        let result = '';
+        let paramValueStarted = false;
+        let paramValueEnded = false;
+        let isString = false;
+
+
+        for (let i = 0; i < funcStr.length; i++) {
+            const char = funcStr[i];
+            const nextChar = funcStr[i + 1];
+
+            firstBr = firstBr || funcStr[i - 1] === '(';
+            isString = (isString && nextChar !== `'`) || (char === '=' && nextChar === `'`);
+            paramValueStarted = (char === '=') || nextChar !== ',';
+            paramValueEnded = nextChar === ',';
+            lastBr = (!isString && nextChar === ')');
+
+            if (firstBr) {
+                result += char;
+            }
+            if (lastBr) {
+                break;
+            }
+
+        }
+
+        return result;
     }
 }
 
