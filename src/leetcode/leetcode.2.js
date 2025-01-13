@@ -392,6 +392,31 @@ class LeetCode2 {
         }
         return s.slice(longest.l, longest.r + 1);
     }
+
+    /**
+     * @param {number[]} nums
+     * @return {void} Do not return anything, modify nums in-place instead.
+     */
+    solution75(nums= [0,0,1,3,0,0,2]) {
+        let countZeros = 0;
+        const deletePos= [];
+        for (let i = 0; i < nums.length; i++) {
+            if (nums[i] === 0) {
+                deletePos.push(i);
+                countZeros++;
+            }
+        }
+
+        for (let i = 0; i < deletePos.length; i++) {
+            nums.splice(deletePos[i]-i, 1);
+        }
+
+        while (countZeros > 0) {
+            nums.push(0);
+            countZeros--;
+        }
+        console.log('result is: ', nums);
+    }
 }
 
 export default LeetCode2;
