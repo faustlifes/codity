@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf68b2f8-930c-4d44-aa7a-145ab371bfc8" name="Changes" comment="refactored my function">
+    <list default="true" id="bf68b2f8-930c-4d44-aa7a-145ab371bfc8" name="Changes" comment="added 75 from leetcode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/leetcode/leetcode.2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/leetcode/leetcode.2.js" afterDir="false" />
     </list>
@@ -57,7 +57,7 @@
     "Node.js.index.js.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "lt70",
+    "git-widget-placeholder": "lt75",
     "javascript.nodejs.core.library.configured.version": "20.16.0",
     "javascript.nodejs.core.library.typings.version": "20.16.15",
     "node.js.detected.package.eslint": "true",
@@ -162,6 +162,8 @@
     <MESSAGE value="rewrote index js, added launcher and added support of private methods" />
     <MESSAGE value="created getStringParams method, because all other solutions from stackoverflow and chatGPT didn't include all cases e.g. &quot;', (,)&quot; symbols in the string params" />
     <MESSAGE value="refactored my function" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored my function" />
+    <MESSAGE value="added 88 task from leetcode" />
+    <MESSAGE value="added 75 from leetcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="added 75 from leetcode" />
   </component>
 </project>
