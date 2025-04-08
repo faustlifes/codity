@@ -856,6 +856,15 @@ class LeetCode3 {
         nums1.sort((a, b) => a - b);
         return nums1;
     }
+    /**2619. Array Prototype Last
+     * @param {[]} nums
+     * */
+    solution2619(nums= [10,2,3,0,0,0]) {
+        Array.prototype.last = function() {
+            return this.length === 0 ? -1 : this[this.length - 1];
+        };
+        return nums.last();
+    }
 
 }
 
