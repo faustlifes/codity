@@ -417,6 +417,25 @@ class LeetCode2 {
         }
         console.log('result is: ', nums);
     }
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    solution80(nums = [0,0,0,1,1,1,2,2,3]) {
+        let countDpls = 0;
+        let k = 0;
+        for (let i = 0; i < nums.length; i++) {
+            const curr = nums[i];
+            const next = nums[i + 1];
+            if (curr === next && countDpls < 2) {
+
+            } else {
+                countDpls += 1;
+                k += 1;
+            }
+
+        }
+    }
 }
 
 export default LeetCode2;
