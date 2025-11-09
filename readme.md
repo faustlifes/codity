@@ -6,21 +6,28 @@
 
 1. run ``npm install`` to intall all needed dependencies
 2. run ``npm start`` to run app
-3. here you will see the ```'Please enter No of lesson (e.g. 1):'``` here you should write some group task(class) name like file/class ``cl1`` name etc. then ``.`` and then solution number ``1`` like
+3. here you will see the `'Please enter No of lesson (e.g. 1):'` here you should write some group task(class) name like file/class ``cl1`` name etc. then ``.`` and then solution number ``1`` like
 4. available task names are here;
-   1. ```cl1``` - codility tasks 1 level
-   2. ```cl2``` - codility tasks 2 level
-   3. ```cl3``` - codility tasks 3 level
-   4. ```cl4``` - codility tasks 4 level
-   5. ```cl5``` - codility tasks 5 level
-   6. ```cl6``` - codility tasks 6 level
-   7. ```cl7``` - codility tasks 7 level
-   8. ```lt1``` - 1 file leetcode has 14 solutions now (every number is a leetcode number)
-   9. ```lt2``` - 2 file leetcode is new a one now (every number is a leetcode number)
-   10. ```quickSearch``` - quickSearch is task with 1 solution here
-   11. ```divideImpera``` - divideImpera is example with 1 solution here
-   12. ```maxWaterArea``` - is task about water area with 1 solution
-   13. ```bsrc``` - is task about binarySearchLesson example
-   14. ```ap``` = is task about how to devide apples anmong children
+   1. `cl1` - codility tasks 1 level
+   2. `cl2` - codility tasks 2 level
+   3. `cl3` - codility tasks 3 level
+   4. `cl4` - codility tasks 4 level
+   5. `cl5` - codility tasks 5 level
+   6. `cl6` - codility tasks 6 level
+   7. `cl7` - codility tasks 7 level
+   8. `lt` - leetcode lessons, could use `lt.1, lt.5, lt.100, etc.` where digit is lesson number
+   9. `quickSearch` - quickSearch is task with 1 solution here
+   10. `divideImpera` - divideImpera is example with 1 solution here
+   11. `maxWaterArea` - is task about water area with 1 solution
+   12. `bsrc` - is task about binarySearchLesson example
+   13. `ap` = is task about how to devide apples anmong children
+ 
+Added config to run app in different modes, you can check it in ``config.js`` file in template folder.
 
+````
+  {
+    "mode": "shell",
+    "lessons": ["lt.1(params...)"]
+   }
+````   
 The license is MIT and every one can clone and check my own experience.
