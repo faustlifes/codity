@@ -21,12 +21,6 @@ class Launcher {
         return `  - lesson is: ${lessonKey}\n  - params is: ${params}\n  - result is: ${solutionFn(params)}\n`;
     }
 
-    // Parses input string into lesson and solution numbers
-    #parseInput(input) {
-        const [lessonNumber, solutionNumber = ''] = input.split('.');
-        return { lessonNumber, solutionNumber };
-    }
-
     // Parses lesson string from config format: 'lt1(1,2,3)' or 'lt.1' or 'lt1'
     #parseLessonString(lessonStr) {
         // Extract params if present
@@ -41,64 +35,27 @@ class Launcher {
     }
 
     // Parses parameters from the config format: '1,2,3' or "'start', true"
-    #parseConfigParams(paramsStr) {
+    #parseConfigParams(paramsStr, solutionFn) {
         if (!paramsStr.trim()) return [];
-        try {
-            return JSON.parse(`[${paramsStr}]`);
-        } catch {
-            // Fallback: split by comma and trim
-            return paramsStr.split(',').map(p => {
-                const trimmed = p.trim();
-                // Try to parse as number
-                if (!isNaN(trimmed) && trimmed !== '') return Number(trimmed);
-                // Try to parse as boolean
-                if (trimmed === 'true') return true;
-                if (trimmed === 'false') return false;
-                // Remove quotes if present
-                if ((trimmed.startsWith("'") && trimmed.endsWith("'")) ||
-                    (trimmed.startsWith('"') && trimmed.endsWith('"'))) {
-                    return trimmed.slice(1, -1);
-                }
-                return trimmed;
-            });
-        }
-    }
-
-    // Resolves and runs lesson from config string
-    runLessonFromConfig(lessonStr) {
-        const { lessonNumber, solutionNumber, params } = this.#parseLessonString(lessonStr);
-        let solutionFn;
-        for (const key in classResolver) {
-            if (key.includes(lessonNumber)) {
-                solutionFn = classResolver[key][`solution${solutionNumber}`];
-                if (solutionFn) break;
-            }
-        }
-
-        if (!solutionFn) {
-            return str.noTaskErr;
-        }
-
         const paramDefs = Reflection.getFunctionParams(solutionFn);
-        const typedParams = params && Array.isArray(params)
-            ? Reflection.createTypes(params, paramDefs)
-            : Reflection.createTypes([params], paramDefs);
-
-        return this.#launchLesson(`lt${lessonNumber}.${solutionNumber}`, solutionFn, typedParams);
+        return paramsStr && Array.isArray(paramsStr)
+            ? Reflection.createTypes(paramsStr, paramDefs)
+            : Reflection.createTypes([paramsStr], paramDefs);
     }
 
     // Resolves a lesson by user input, prompts for params, and launches
-    async resolveLessonByNo(input) {
-        const { lessonNumber, solutionNumber } = this.#parseInput(input);
+    async resolveLessonByNo(input, askParams = true) {
+        const data = this.#parseLessonString(input);
         let solutionFn;
         for (const key in classResolver) {
-            if (key.includes(lessonNumber)) {
-                solutionFn = classResolver[key][`solution${solutionNumber}`];
+            if (key.includes(data.lessonNumber)) {
+                solutionFn = classResolver[key][`solution${data.solutionNumber}`];
                 if (solutionFn) break;
             }
         }
-        const params = await this.#askForParams(solutionFn);
-        return this.#launchLesson(input, solutionFn, params || []);
+        const typedParams = this.#parseConfigParams(data.params, solutionFn);
+        data.params = !data.params && askParams? await this.#askForParams(solutionFn) : typedParams;
+        return this.#launchLesson(input, solutionFn, data.params || []);
     }
 
     // Parses user input into typed parameters
