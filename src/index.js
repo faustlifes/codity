@@ -51,11 +51,11 @@ function runConfig(config) {
 }
 
 function main() {
-    if (config?.mode === 'shell') {
-        runShell();
-    } else {
-        runConfig(config);
+    const resolver = {
+        'shell': runShell,
+        'config': runConfig,
     }
+    return resolver[config?.mode]? resolver[config?.mode](config) : str.noTaskErr;
 }
 
 main();

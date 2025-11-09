@@ -6,12 +6,20 @@
 export class Reflection {
     // Type detection patterns for parameter inference
     static typePatterns = [
-        { type: 'string', regex: /^['"].*['"]$/, constructor: (s) => s },
-        { type: 'Object', regex: /^\{.*\}$/, constructor: (str) => JSON.parse(str) },
-        { type: 'Array', regex: /^\[.*\]$/, constructor: (str) => JSON.parse(str) },
-        { type: 'number', regex: /^[0-9]+(\.[0-9]+)?$/, constructor: (str) => !isNaN(str) ? parseFloat(str) : undefined },
-        { type: 'bool', regex: /^(true|false)$/, constructor: (bool) => bool === 'true' },
+        { type: 'string', regex: /^['"].*['"]$/, constructor: this.typeResolver.string },
+        { type: 'Object', regex: /^\{.*\}$/, constructor: this.typeResolver.Object },
+        { type: 'Array', regex: /^\[.*\]$/, constructor: this.typeResolver.Array },
+        { type: 'number', regex: /^[0-9]+(\.[0-9]+)?$/, constructor: this.typeResolver.number },
+        { type: 'bool', regex: /^(true|false)$/, constructor: this.typeResolver.bool },
     ];
+
+    static typeResolver = {
+        'string': (s) => s,
+        'Object': (str) => JSON.parse(str),
+        'Array': (str) => JSON.parse(str),
+        'number': (str) => !isNaN(str) ? parseFloat(str) : undefined,
+        'bool': (bool) => bool === 'true',
+    };
 
     /**
      * Returns parameter names and inferred types for a given function.
@@ -51,16 +59,9 @@ export class Reflection {
      * @return {Array<*>} - Typed parameters.
      */
     static createTypes(stringParameters = [], parameters = [{ name: '', type: '' }]) {
-        const typesPattern = {
-            'string': (s) => s,
-            'Object': (str) => JSON.parse(str),
-            'Array': (str) => JSON.parse(str),
-            'number': (str) => !isNaN(str) ? parseFloat(str) : undefined,
-            'bool': (bool) => bool === 'true',
-        };
         return stringParameters.map((p, index) => {
-            return !!typesPattern[parameters[index]?.type]
-                ? typesPattern[parameters[index]?.type](p)
+            return !!this.typeResolver[parameters[index]?.type]
+                ? thi.typeResolver[parameters[index]?.type](p)
                 : p;
         });
     }
