@@ -59,7 +59,7 @@ export class Reflection {
             'bool': (bool) => bool === 'true',
         };
         return stringParameters.map((p, index) => {
-            return typesPattern[parameters[index]?.type]
+            return !!typesPattern[parameters[index]?.type]
                 ? typesPattern[parameters[index]?.type](p)
                 : p;
         });
