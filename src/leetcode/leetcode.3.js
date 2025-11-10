@@ -865,6 +865,24 @@ class LeetCode3 {
         };
         return nums.last();
     }
+    /**
+     * @param {string} s
+     * @return {number}
+     * 8. String to Integer (atoi)
+     */
+    solution8(s= '-1232d0r5') {
+        let input = '';
+        let d = s.split('');
+        for (let i = 0; i < s.length; i++) {
+            if (s[i] === ' ' || s[i] === '+' || s[i] === '-') {
+                continue;
+            } else if (isNaN(s[i])) {
+                break;
+            }
+            input += s[i];
+        }
+        return parseInt(input);
+    }
 
 }
 

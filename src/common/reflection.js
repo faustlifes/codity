@@ -4,6 +4,15 @@
  */
 
 export class Reflection {
+
+    static typeResolver = {
+        'string': (s) => s.replace(/[`]/g, ''),
+        'Object': (str) => JSON.parse(str),
+        'Array': (str) => JSON.parse(str),
+        'number': (str) => !isNaN(str) ? parseFloat(str) : undefined,
+        'bool': (bool) => bool === 'true',
+    };
+
     // Type detection patterns for parameter inference
     static typePatterns = [
         { type: 'string', regex: /^['"].*['"]$/, constructor: this.typeResolver.string },
@@ -12,14 +21,6 @@ export class Reflection {
         { type: 'number', regex: /^[0-9]+(\.[0-9]+)?$/, constructor: this.typeResolver.number },
         { type: 'bool', regex: /^(true|false)$/, constructor: this.typeResolver.bool },
     ];
-
-    static typeResolver = {
-        'string': (s) => s,
-        'Object': (str) => JSON.parse(str),
-        'Array': (str) => JSON.parse(str),
-        'number': (str) => !isNaN(str) ? parseFloat(str) : undefined,
-        'bool': (bool) => bool === 'true',
-    };
 
     /**
      * Returns parameter names and inferred types for a given function.
@@ -59,11 +60,15 @@ export class Reflection {
      * @return {Array<*>} - Typed parameters.
      */
     static createTypes(stringParameters = [], parameters = [{ name: '', type: '' }]) {
-        return stringParameters.map((p, index) => {
-            return !!this.typeResolver[parameters[index]?.type]
-                ? thi.typeResolver[parameters[index]?.type](p)
-                : p;
-        });
+        if (stringParameters && Array.isArray(stringParameters)) {
+            return stringParameters.map((p, index) => {
+
+            });
+        }
+        return !!this.typeResolver[parameters[0]?.type]
+            ? this.typeResolver[parameters[0]?.type](stringParameters)
+            : stringParameters;
+
     }
 
     /**

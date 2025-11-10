@@ -36,11 +36,9 @@ class Launcher {
 
     // Parses parameters from the config format: '1,2,3' or "'start', true"
     #parseConfigParams(paramsStr, solutionFn) {
-        if (!paramsStr.trim()) return [];
+        if (!paramsStr.trim()) return undefined;
         const paramDefs = Reflection.getFunctionParams(solutionFn);
-        return paramsStr && Array.isArray(paramsStr)
-            ? Reflection.createTypes(paramsStr, paramDefs)
-            : Reflection.createTypes([paramsStr], paramDefs);
+        return paramsStr ? Reflection.createTypes(paramsStr, paramDefs) : null;
     }
 
     // Resolves a lesson by user input, prompts for params, and launches
@@ -55,7 +53,7 @@ class Launcher {
         }
         const typedParams = this.#parseConfigParams(data.params, solutionFn);
         data.params = !data.params && askParams? await this.#askForParams(solutionFn) : typedParams;
-        return this.#launchLesson(input, solutionFn, data.params || []);
+        return this.#launchLesson(input, solutionFn, data.params);
     }
 
     // Parses user input into typed parameters
