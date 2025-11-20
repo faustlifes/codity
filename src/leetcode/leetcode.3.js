@@ -889,53 +889,47 @@ class LeetCode3 {
      * @param {number} numRows
      * @return {string}
      */
-    solution6(s= 'quadrostage', numRows= 4) {
-        const ex =
-            `[q _ r _ a]  [q _ _ s _ ] [q _ _ _ a]
-             [u d o t g]  [u _ o t _ ] [u _ _ t g]
-             [a _ s _ e]  [a r _ a e ] [a _ s _ e]
-                          [d _ _ g _ ] [d o _ _ _]
-                                       [r _ _ _ _]
-            `;
+    solution6(s= 'PAYPALISHIRING', numRows= 3) {
         let i = 0;
-        let str = '';
-        let idx = 0;
+        let colIdx = 0;
         let rowIdx = 0;
         let diagonalIdx  = numRows - 2;
-        const arr = [Array(numRows).fill('')];
+        const arr = [...Array(numRows)].map(() => []);
         function fillDiagonal() {
             if (i === s.length) {
                 return;
             }
             if (diagonalIdx < 1) {
-                idx = 0;
-                diagonalIdx = numRows - 2;
+                colIdx += 1;
+                rowIdx = 0;
                 return;
             }
-            arr[rowIdx][diagonalIdx] = s[i];
+            while (rowIdx < numRows) {
+                if (rowIdx === diagonalIdx) {
+                    arr[rowIdx].push(s[i]);
+                    i += 1;
+                } else {
+                    arr[rowIdx].push('');
+                }
+                rowIdx += 1;
+            }
             diagonalIdx -= 1;
-            rowIdx += 1;
-            idx += 1;
-            i += 1;
-            arr.push(Array(numRows).fill(''));
+            rowIdx = 0;
             fillDiagonal();
         }
         while (i < s.length) {
-            arr[rowIdx][idx] = s[i];
+            arr[rowIdx].push(s[i]);
             i += 1;
-            if (idx === numRows - 1) {
-                idx = 0;
-                rowIdx += 1;
+            if (rowIdx === numRows - 1) {
+                rowIdx = 0;
+                colIdx += 1;
                 diagonalIdx = numRows - 2;
-                arr.push(Array(numRows).fill(''));
                 fillDiagonal();
             } else {
-                idx += 1;
+                rowIdx += 1;
             }
-
         }
-        console.log(arr);
-        return str;
+        return arr.map(row => row.join('')).join('');
     }
 
 }
