@@ -200,7 +200,7 @@ class LeetCode1 {
   /**
    * Create Curry function which divide params like currySum(a)(b)(c)(d)
    **/
-  solution6() {
+  solution06() {
     function sum(a, b, c, d) {
       return a + b + c + d;
     }
