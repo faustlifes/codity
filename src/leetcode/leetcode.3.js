@@ -883,6 +883,54 @@ class LeetCode3 {
         }
         return parseInt(input);
     }
+    /** 6. Zigzag Conversion
+     * The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+     * @param {string} s
+     * @param {number} numRows
+     * @return {string}
+     */
+    solution6(s= 'PAYPALISHIRING', numRows= 3) {
+        let i = 0;
+        let colIdx = 0;
+        let rowIdx = 0;
+        let diagonalIdx  = numRows - 2;
+        const arr = [...Array(numRows)].map(() => []);
+        function fillDiagonal() {
+            if (i === s.length) {
+                return;
+            }
+            if (diagonalIdx < 1) {
+                colIdx += 1;
+                rowIdx = 0;
+                return;
+            }
+            while (rowIdx < numRows) {
+                if (rowIdx === diagonalIdx) {
+                    arr[rowIdx].push(s[i]);
+                    i += 1;
+                } else {
+                    arr[rowIdx].push('');
+                }
+                rowIdx += 1;
+            }
+            diagonalIdx -= 1;
+            rowIdx = 0;
+            fillDiagonal();
+        }
+        while (i < s.length) {
+            arr[rowIdx].push(s[i]);
+            i += 1;
+            if (rowIdx === numRows - 1) {
+                rowIdx = 0;
+                colIdx += 1;
+                diagonalIdx = numRows - 2;
+                fillDiagonal();
+            } else {
+                rowIdx += 1;
+            }
+        }
+        return arr.map(row => row.join('')).join('');
+    }
 
 }
 
