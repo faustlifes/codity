@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r @babel/register ./src/index.js",
     "ts": "webpack && cd ./dist && nodemon bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "lint-report": "eslint ./src -f node_modules/eslint-html-reporter/reporter.js -o eslint_report.html",
     "lint-fix": "eslint ./src --fix",
     "lint": "eslint ./src"
